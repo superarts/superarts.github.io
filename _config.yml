@@ -7,9 +7,9 @@ highlighter: pygments
 permalink:        /blog/:year/:month/:day/:title
 
 # Setup
-title:            'Jekyll Metro'
-tagline:          'A Metro theme for Jekyll'
-description:      'A Sample blog using Jekyll Metro'
+title:            'Super Art Studio'
+tagline:          'Personal website of leo＠superarts.org'
+description:      'www.superarts.org'
 url:              'http://localhost:4000'
 baseurl:          ''
 
@@ -28,13 +28,13 @@ navigation:
 
 
 # Author Details
-author:         'Abdel Raoof Olakara'
+author:         'Leo L.'
 
 #Social Media links
-linkedin:       'https://ae.linkedin.com/in/olakara/'
-twitter:        'https://twitter.com/olakara'
-facebook:       'https://www.facebook.com/olakara'
-gplus:          'https://plus.google.com/100425464897246255887/'
+linkedin:       'https://www.linkedin.com/in/superarts'
+twitter:        'https://twitter.com/superarts_org'
+facebook:       'https://www.facebook.com/leo.superarts'
+gplus:          'https://plus.google.com/106764261037553798296/'
 
 # Google Analytics
 gahandler: 'UA-52149651-1'

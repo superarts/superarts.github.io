@@ -1,61 +1,86 @@
 ---
 layout: master
 title: Home
-description: Home Page for Jekyll Metro Theme
+description: Home Page for superarts.org
 ---
 
 <div class="container">
-
 	<header class="row">
-	  <div class="col-sm-6 col-md-12" style="margin-top:25px;margin-bottom:25px">
-	    <h1 id="pin">{{site.title}}</h1>
-	  </div>
+		<div class="col-sm-6 col-md-12" style="margin-top:25px;margin-bottom:25px">
+			<h1 id="pin">{{site.title}}</h1>
+		</div>
 	</header>
 	<nav>
 		<div class="row" style="margin-top:25px">
- 			<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="col-md-4 col-sm-6 col-xs-12">
 				<a href="about/">
 					<div class="tile purple profile bord">
-						<h2 class="title">About Me</h2>
-						<p>Hello World, I am {{site.author}}.</p>
+						<h2 class="title">About {{site.author}}</h2>
+						<p>
+						iOS developer since 2008.<br>
+						Professional software engineer since 2004.<br>
+						Programmer since 1994.<br>
+						</p>
 					</div>
 				</a>
-		    </div>
-			<div class="col-md-2 col-sm-3 col-xs-6">
-				<a href="resume/" title="Resume" class="tile red bord icon-resume"></a>
 			</div>
 			<div class="col-md-2 col-sm-3 col-xs-6">
 				<div class="live-tile" data-mode="flip" data-delay="4000">
 					<div>
-						<a href="blog/" title="Blog" class="tile orange bord icon-blog"></a>
+						<a href="resume/" title="Resume" class="tile red bord icon-resume"></a>
 					</div>
 					<div>
-						<a href="blog/" title="Blog" class="tile orange bord font-fix">
-						<p>Blog Section:</p>
-							<ol>
-								<li>Posts</li>
-								<li>News</li>
-							</ol>
+						<a href="resume/" title="Resume" class="tile red bord font-fix">
+							<h2 class="title">My Resume</h2>
 						</a>
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<div class="row">
-
-			<div class="col-md-4 col-sm-6 col-xs-12">
-				{% for post in site.posts offset:1 limit:1 %}
-				<a href="{{post.url}}">
-					<div class="tile green bord">
-						<h3 class="title">Recent Article</h3>
-						<h4 class="title">{{ post.title }}</h4>
-						<p> {{ post.content | strip_html | truncatewords: 10 }}</p>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="resume/" title="Portfolio">
+					<div class="tile red bord font-fix">
+						<h3 class="title">Portfolio</h3>
+						<ol>
+							<li>Geek</li>
+							<li>Artist</li>
+							<li>Gamer</li>
+						</ol>
 					</div>
 				</a>
-				{% endfor %}
 			</div>
+		</div>
 
+		<div class="row" style="margin-top:0px">
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="blog/">
+					<div class="tile red bord font-fix">
+						<p class="title">Blog</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="http://superarts.github.io/LSwift/" title="LSwift Blog">
+					<div class="tile red bord font-fix">
+						<p class="title">LSwift Blog</p>
+						<ol>
+							<li>RestClient</li>
+							<li>Theme Manager</li>
+						</ol>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<a href="blog/">
+					<div class="tile green bord">
+						<h3 class="title">Recent Article</h3>
+						<ul>
+							{% for post in site.posts offset:1 limit:2 %}
+							<li class="title">{{ post.title }}</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</a>
+			</div>
 			<div class="col-md-4 col-sm-6 col-xs-12">
 				{% for post in site.posts limit:1 %}
 				<a href="{{post.url}}">
@@ -67,34 +92,92 @@ description: Home Page for Jekyll Metro Theme
 				</a>
 				{% endfor %}
 			</div>
-
 			<div class="col-md-4 col-sm-6 col-xs-12">
 				{% for post in site.posts %}
-					{% if post.featured == true %}
-					<a href="{{post.url}}">
-						<div class="tile orange bord">
-							<h3 class="title">Featured Article</h3>
-							<h4 class="title">{{ post.title }}</h4>
-							<p> {{ post.content | strip_html | truncatewords: 10 }}</p>
-						</div>
-					</a>
-					{% break %}
-					{% endif %}
+				{% if post.featured == true %}
+				<a href="{{post.url}}">
+					<div class="tile orange bord">
+						<h3 class="title">Featured Article</h3>
+						<h4 class="title">{{ post.title }}</h4>
+						<p> {{ post.content | strip_html | truncatewords: 10 }}</p>
+					</div>
+				</a>
+				{% break %}
+				{% endif %}
 				{% endfor %}
 			</div>
 		</div>
 
-		<div class="row" style="margin-bottom:25px">
-			<div data-delay="2000" data-mode="flip" class="live-tile flip ha fix-3">
-			<div class="col-md-2 col-sm-3 col-xs-6 flip-front ha" style="transform: rotateX(180deg); transition: all 500ms ease 0s;">
-				<a class="tile blue bord lk-ico" href="https://ae.linkedin.com/in/olakara/"></a>
+		<div class="row" style="margin-top:0px">
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<a href="http://www.github.com/superarts">
+					<div class="tile red bord font-fix">
+						<p class="title">GitHub Projects</p>
+					</div>
+				</a>
 			</div>
-
-			<div class="col-md-2 col-sm-3 col-xs-6 flip-back ha" style="transform: rotateX(360deg); transition: all 500ms ease 0s;">
-				<a class="tile blue bord tw-ico" href="https://twitter.com/olakara"></a>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="http://www.github.com/superarts/LSwift">
+					<div class="tile red bord font-fix">
+						<p class="title">LSwift</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="http://www.github.com/superarts/LFReversibleTinderView">
+					<div class="tile red bord font-fix">
+						<p class="title">Reversible Tinder View</p>
+					</div>
+				</a>
 			</div>
 		</div>
 
+		<div class="row" style="margin-top:0px">
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<a href="http://itunes.apple.com/au/artist/super-art-software/id289071545">
+					<div class="tile red bord font-fix">
+						<p class="title">App Store Page</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="http://FitFoxRewards.com">
+					<div class="tile red bord font-fix">
+						<p class="title">FitFox</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="https://itunes.apple.com/us/app/sayea-anonymous-location-sharing/id889636032?mt=8">
+					<div class="tile red bord font-fix">
+						<p class="title">Sayea</p>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="row" style="margin-top:0px">
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="http://stackoverflow.com/users/772295/superarts-org">
+					<div class="tile red bord font-fix">
+						<p class="title">StackOverflow Profile</p>
+					</div>
+				</a>
+			</div>
+			<!--
+		</div>
+
+		<div class="row" style="margin-top:25px">
+			<div data-delay="2000" data-mode="flip" class="live-tile flip ha fix-3">
+				<div class="col-md-2 col-sm-3 col-xs-6 flip-front ha" style="transform: rotateX(180deg); transition: all 500ms ease 0s;">
+					<a class="tile blue bord lk-ico" href="https://ae.linkedin.com/in/olakara/"></a>
+				</div>
+
+				<div class="col-md-2 col-sm-3 col-xs-6 flip-back ha" style="transform: rotateX(360deg); transition: all 500ms ease 0s;">
+					<a class="tile blue bord tw-ico" href="https://twitter.com/olakara"></a>
+				</div>
+			</div>
+			-->
 			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="{{site.twitter}}"  class="tile blue bord tw-ico"></a>
 			</div>
@@ -115,7 +198,7 @@ description: Home Page for Jekyll Metro Theme
 			<div class="col-md-2 col-sm-3 col-xs-6 rside">
 				<div class="row">
 					<div style="padding-left:0px" class="col-md-6 col-sm-6 col-xs-6">
-					    <a href="{{site.linkedin}}" class="mtile blue bord lk-ico-sm"></a>
+						<a href="{{site.linkedin}}" class="mtile blue bord lk-ico-sm"></a>
 					</div>
 					<div style="padding-left:0px" class="col-md-6 col-sm-6 col-xs-6">
 						<a href="{{site.twitter}}"  class="mtile blue bord tw-ico-sm"></a>
@@ -129,7 +212,99 @@ description: Home Page for Jekyll Metro Theme
 						<a href="{{site.gplus}}" class="mtile orange bord gl-ico-sm"></a>
 					</div>
 				</div>
-			</div> <!-- End of Mini tile -->
+			</div>
+			<!-- End of Mini tile -->
+		</div>
+
+		<div class="row" style="margin-top:0px">
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<div class="live-tile" data-mode="flip" data-delay="4000">
+					<div>
+						<a href="http://superartstudio.blogspot.com" title="Blog" class="tile orange bord icon-blog"></a>
+					</div>
+					<div>
+						<a href="http://superartstudio.blogspot.com" title="Blog" class="tile orange bord font-fix">
+							<p>Blogspot</p>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="https://sites.google.com/a/superarts.org/en/">
+					<!-- http://en.superarts.org/ -->
+					<div class="tile red bord font-fix">
+						<p class="title">Super Art Studio</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="https://sites.google.com/a/superarts.org/studio/">
+					<!-- http://studio.superarts.org/ -->
+					<div class="tile red bord font-fix">
+						<p class="title">Super Art Studio (Old)</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="http://superart.wikidot.com/english:start">
+					<div class="tile red bord font-fix">
+						<p class="title">Super Art Studio (Wikidot)</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="http://sourceforge.net/u/userid-1501053/profile/">
+					<div class="tile red bord font-fix">
+						<p class="title">My Old Sourceforge Profile</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="https://code.google.com/u/112110402498473378721/">
+					<div class="tile red bord font-fix">
+						<p class="title">Google Code Profile</p>
+						<ul>
+							<li>Dying til' 01/16</li>
+						<ul>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="row" style="margin-top:0px">
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="https://sites.google.com/a/superarts.org/cn/">
+					<!-- http://cn.superarts.org/ -->
+					<div class="tile red bord font-fix">
+						<p class="title">超级艺术工作室</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="https://sites.google.com/a/superarts.org/studio/%E4%B8%AD%E6%96%87%E9%A6%96%E9%A1%B5">
+					<!-- http://studio.superarts.org/%E4%B8%AD%E6%96%87%E9%A6%96%E9%A1%B5 -->
+					<div class="tile red bord font-fix">
+						<p class="title">超级艺术工作室（旧）</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="http://superart.wikidot.com/chinese:start">
+					<div class="tile red bord font-fix">
+						<p class="title">超级艺术工作室 (Wikidot)</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="http://hi.baidu.com/doctordoom">
+					<div class="tile red bord font-fix">
+						<p class="title">超级艺术工作室</p>
+						<ul>
+							<li>百度空间已死</li>
+						<ul>
+					</div>
+				</a>
+			</div>
 		</div>
 	</nav>
 </div>
