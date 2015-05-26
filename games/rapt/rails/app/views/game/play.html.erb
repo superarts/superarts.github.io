@@ -1,0 +1,50 @@
+<%= content_for :title, "Play" %>
+
+<script type="text/javascript"><!--
+var username = <%=raw current_user.nil? ? 'null' : '"' + current_user.username + '"' %>;
+// --></script>
+
+<div id="game">
+  <canvas id="canvas">Your browser does not support the HTML5 canvas element.</canvas>
+  <div id="levelScreen"></div>
+  <div id="loadingScreen"></div>
+</div>
+
+<%= include_stylesheets :game %>
+<%= include_javascripts :game %>
+
+<div id="keys">
+  <div id="wasd">
+    <div class="key changeable" style="left:65px;top:0;" id="b-jumpKey"></div>
+    <div class="key changeable" style="left:0;top:65px;" id="b-leftKey"></div>
+    <div class="key changeable" style="left:65px;top:65px;" id="b-crouchKey"></div>
+    <div class="key changeable" style="left:130px;top:65px;" id="b-rightKey"></div>
+    Move the blue player
+  </div>
+
+  <div id="arrows">
+    <div class="key changeable" style="left:65px;top:0;" id="a-jumpKey"></div>
+    <div class="key changeable" style="left:0;top:65px;" id="a-leftKey"></div>
+    <div class="key changeable" style="left:65px;top:65px;" id="a-crouchKey"></div>
+    <div class="key changeable" style="left:130px;top:65px;" id="a-rightKey"></div>
+    Move the red player
+  </div>
+
+  <div id="other">
+    <div class="key changeable" style="left:0;top:0;" id="killKey"></div>
+    <div class="key" style="left:0;top:65px;" id="menuKey"><small>Esc</small></div>
+    Kill both players (start over)<br>
+    Go to the level menu
+  </div>
+</div>
+
+<p>
+  RAPT is a cooperative platformer written in HTML5, and is meant to be played with a friend.
+  Get both players on the goal at the same time to win (the goal is marked by four black triangles).
+  For a harder challenge, try collecting all the golden cogs in all the levels.
+</p>
+<p>Don't use QWERTY? Click on a key to remap it.</p>
+
+<div id="buttons">
+    <a href="/edit/" class="button"><span></span> <b>Open&nbsp;level&nbsp;editor</b> <br> Create your own levels</a>
+</div>

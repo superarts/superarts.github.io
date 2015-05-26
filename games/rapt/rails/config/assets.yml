@@ -1,0 +1,16 @@
+embed_assets: on
+
+javascripts:
+  editor:
+    - public/javascripts/jquery.mousewheel.min.js
+    - public/javascripts/editor.js
+  game:
+    - public/javascripts/rapt.js
+  level_list:
+    - public/javascripts/level_list.js
+    
+stylesheets:
+  editor:
+    - public/stylesheets/editor.css
+  game:
+    - public/stylesheets/game.css

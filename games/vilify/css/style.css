@@ -1,0 +1,41 @@
+/* Main stylesheet */
+
+/* BASE STYLES
+------------------------------------------------ */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Fredoka One', tahoma, arial;
+	font-size: 16px;
+}
+
+/* ELEMENT STYLES
+-------------------------------------------------- */
+
+hr {
+	border: 0;
+	color: rgba( 0, 0, 0, .4 );
+	background-color: rgba( 255, 255, 255, .2 );
+	box-shadow: 0 0 15px rgba( 255, 255, 255, .2 );
+	height: 2px;
+	margin: 5px 0;
+}
+
+/* GAME
+-------------------------------------------------- */
+
+canvas {
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-drag: none;
+	position: fixed;
+	border-right: 1px solid #000;
+}

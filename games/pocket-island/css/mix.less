@@ -1,0 +1,47 @@
+.transform(@transform) {
+    -webkit-transform: @transform;
+    -moz-transform: @transform;
+    -ms-transform: @transform;
+    -o-transform: @transform;
+    transform: @transform;
+}
+
+.transform-origin(@origin) {
+    -webkit-transform-origin: @origin;
+    -moz-transform-origin: @origin;
+    -ms-transform-origin: @origin;
+    -o-transform-origin: @origin;
+    transform-origin: @origin;
+}
+
+.transition(@transition) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -ms-transition: @transition;
+    -o-transition: @transition;
+    transition: @transition;
+}
+
+.user-select(@mode) when (@mode = none) {
+    -webkit-touch-callout: none;
+    -moz-touch-callout: none;
+    -webkit-tap-higlight: none;
+    -moz-tap-higlight: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -moz-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.user-select(@mode) {
+    -webkit-user-select: @mode;
+    -moz-user-select: @mode;
+    -ms-user-select: @mode;
+    user-select: @mode;
+}
+
+.user-drag(@mode) {
+    -webkit-user-drag: @mode;
+    -moz-user-drag: @mode;
+    -ms-user-drag: @mode;
+    user-drag: @mode;
+}
+

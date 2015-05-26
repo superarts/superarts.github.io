@@ -1,0 +1,58 @@
+@import "mix.less";
+
+#dev-menu{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  padding: 80px 0px 0px 60px;
+  position:absolute;
+  z-index:1000000000000;
+  .transform(scale(0));
+  .transition(all .5s ease-in);
+  background: rgba(0, 0, 0, 0.8)
+}
+
+#dev-menu.active{
+  .transform(scale(1));
+}
+
+#dev-menu h2{
+  .transform(rotate(1deg));
+  color: white;
+  font: 45px 'Bubblegum Sans', sans-serif;
+  left: -120px;
+  overflow: hidden;
+  padding:0;
+  margin:-10px 0 0 120px;
+
+  position:relative;
+  right: 20px;
+  text-overflow: ellipsis;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  top: -50px;
+}
+
+#dev-menu button{
+  width: 80%;
+  margin-left: 5%;
+  margin-bottom: 0px;
+  padding: 15px 0;
+}
+
+#dev-menu button.cancel{
+    position: absolute;
+    top: 0; right: 64px;
+    width: 92px; height: 92px;
+    text-indent: 92px;
+    background: url("../images/popup/close_button.png") no-repeat 0 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    &:active {
+        background-position: -92px 0;
+    }
+}
