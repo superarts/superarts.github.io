@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Why I cannot override function applicationSuspend?
+title:  Why can't I override function applicationSuspend?
 date:   2008-06-26 12:00:00
 tags:
 - iOS

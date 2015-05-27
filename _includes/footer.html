@@ -4,12 +4,9 @@
             {% if site.footersvg == 'true' %}
                   <div>{% include svg-icons.html %}</div>
             {% endif %}
-            &copy; {{ site.time | date: '%Y' }} - {{site.author}}. All rights reserved<br/>
-            Built using 
-            {% if page.theme And page.theme != "" And page.theme != nil %}
-            <a class="{{page.theme}}-link" href="http://jekyllrb.com/">Jekyll</a>
-            {% else %}
-            <a href="http://jekyllrb.com/">Jekyll</a>
-            {% endif %}
+            &copy; {{ site.time | date: '%Y' }} - {{site.author}} All rights reserved<br/>
+            Powered by
+			<a href="https://pages.github.com/">GitHub Pages</a> /
+            <a href="https://github.com/olakara/JekyllMetro">JekyllMetro</a>
       </div>
 </footer>

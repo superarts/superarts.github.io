@@ -45,16 +45,16 @@ footersvg: 'true'
 
 footer-links:
   dribbble:
-  email: None
-  facebook:
+  email: 'leo@superarts.org'
+  facebook: 'https://www.facebook.com/leo.superarts'
   flickr:
   github:
   instagram:
-  linkedin:
+  linkedin: 'https://www.linkedin.com/in/superarts'
   pinterest:
   rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
   google: None
-  twitter: None
+  twitter: 'https://twitter.com/superarts_org'
   stackoverflow: #users/4388898/peter-zhu # your stackoverflow profile, e.g. "users/50476/bart-kiers"
 
 # Disqus

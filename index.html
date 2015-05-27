@@ -37,7 +37,7 @@ description: Home Page for superarts.org
 				</div>
 			</div>
 			<div class="col-md-2 col-sm-3 col-xs-6">
-				<a href="resume/" title="Portfolio">
+				<a href="portfolio/" title="Portfolio">
 					<div class="tile red bord font-fix">
 						<h3 class="title">Portfolio</h3>
 						<ol>
@@ -51,28 +51,10 @@ description: Home Page for superarts.org
 		</div>
 
 		<div class="row" style="margin-top:0px">
-			<div class="col-md-2 col-sm-3 col-xs-6">
-				<a href="blog/">
-					<div class="tile red bord font-fix">
-						<p class="title">Blog</p>
-					</div>
-				</a>
-			</div>
-			<div class="col-md-2 col-sm-3 col-xs-6">
-				<a href="http://superarts.github.io/LSwift/" title="LSwift Blog">
-					<div class="tile red bord font-fix">
-						<p class="title">LSwift Blog</p>
-						<ol>
-							<li>RestClient</li>
-							<li>Theme Manager</li>
-						</ol>
-					</div>
-				</a>
-			</div>
 			<div class="col-md-4 col-sm-6 col-xs-12">
 				<a href="blog/">
 					<div class="tile green bord">
-						<h3 class="title">Recent Article</h3>
+						<h3 class="title">My Blog</h3>
 						<ul>
 							{% for post in site.posts offset:1 limit:2 %}
 							<li class="title">{{ post.title }}</li>
@@ -85,7 +67,7 @@ description: Home Page for superarts.org
 				{% for post in site.posts limit:1 %}
 				<a href="{{post.url}}">
 					<div class="tile red bord">
-						<h3 class="title">Latest Article</h3>
+						<h3 class="title">Latest Post</h3>
 						<h4 class="title">{{ post.title }}</h4>
 						<p> {{ post.content | strip_html | truncatewords: 10 }}</p>
 					</div>
@@ -106,10 +88,21 @@ description: Home Page for superarts.org
 				{% endif %}
 				{% endfor %}
 			</div>
+			<div class="col-md-2 col-sm-3 col-xs-6">
+				<a href="http://superarts.github.io/LSwift/" title="LSwift Blog">
+					<div class="tile red bord font-fix">
+						<p class="title">LSwift Blog</p>
+						<ol>
+							<li>RestClient</li>
+							<li>Theme Manager</li>
+						</ol>
+					</div>
+				</a>
+			</div>
 		</div>
 
 		<div class="row" style="margin-top:0px">
-			<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="http://www.github.com/superarts">
 					<div class="tile red bord font-fix">
 						<p class="title">GitHub Projects</p>
@@ -133,7 +126,7 @@ description: Home Page for superarts.org
 		</div>
 
 		<div class="row" style="margin-top:0px">
-			<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="http://itunes.apple.com/au/artist/super-art-software/id289071545">
 					<div class="tile red bord font-fix">
 						<p class="title">App Store Page</p>
@@ -193,27 +186,6 @@ description: Home Page for superarts.org
 			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="{{site.gplus}}" class="tile orange bord gl-ico"></a>
 			</div>
-
-			<!-- Mini tile -->
-			<div class="col-md-2 col-sm-3 col-xs-6 rside">
-				<div class="row">
-					<div style="padding-left:0px" class="col-md-6 col-sm-6 col-xs-6">
-						<a href="{{site.linkedin}}" class="mtile blue bord lk-ico-sm"></a>
-					</div>
-					<div style="padding-left:0px" class="col-md-6 col-sm-6 col-xs-6">
-						<a href="{{site.twitter}}"  class="mtile blue bord tw-ico-sm"></a>
-					</div>
-				</div>
-				<div class="row">
-					<div  class="col-md-6 col-sm-6 col-xs-6 rep-1">
-						<a href="{{site.facebook}}" class="mtile purple bord fk-ico-sm"></a>
-					</div>
-					<div  class="col-md-6 col-sm-6 col-xs-6 rep-2">
-						<a href="{{site.gplus}}" class="mtile orange bord gl-ico-sm"></a>
-					</div>
-				</div>
-			</div>
-			<!-- End of Mini tile -->
 		</div>
 
 		<div class="row" style="margin-top:0px">
@@ -305,6 +277,27 @@ description: Home Page for superarts.org
 					</div>
 				</a>
 			</div>
+
+			<!-- Mini tile -->
+			<div class="col-md-2 col-sm-3 col-xs-6 rside">
+				<div class="row">
+					<div style="padding-left:0px" class="col-md-6 col-sm-6 col-xs-6">
+						<a href="{{site.linkedin}}" class="mtile blue bord lk-ico-sm"></a>
+					</div>
+					<div style="padding-left:0px" class="col-md-6 col-sm-6 col-xs-6">
+						<a href="{{site.twitter}}"  class="mtile blue bord tw-ico-sm"></a>
+					</div>
+				</div>
+				<div class="row">
+					<div  class="col-md-6 col-sm-6 col-xs-6 rep-1">
+						<a href="{{site.facebook}}" class="mtile purple bord fk-ico-sm"></a>
+					</div>
+					<div  class="col-md-6 col-sm-6 col-xs-6 rep-2">
+						<a href="{{site.gplus}}" class="mtile orange bord gl-ico-sm"></a>
+					</div>
+				</div>
+			</div>
+			<!-- End of Mini tile -->
 		</div>
 	</nav>
 </div>
