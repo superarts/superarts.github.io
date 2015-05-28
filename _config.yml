@@ -46,16 +46,16 @@ footersvg: 'true'
 footer-links:
   dribbble:
   email: 'leo@superarts.org'
-  facebook: 'https://www.facebook.com/leo.superarts'
+  facebook: 'leo.superarts'
   flickr:
-  github:
+  github: 'superarts'
   instagram:
-  linkedin: 'https://www.linkedin.com/in/superarts'
+  linkedin: 'superarts'
   pinterest:
   rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
-  google: None
-  twitter: 'https://twitter.com/superarts_org'
-  stackoverflow: #users/4388898/peter-zhu # your stackoverflow profile, e.g. "users/50476/bart-kiers"
+  google: '106764261037553798296'
+  twitter: 'superarts_org'
+  stackoverflow: 'users/772295/superarts-org'
 
 # Disqus
 disqushandler: 'testingblogo'
