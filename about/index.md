@@ -1,38 +1,21 @@
 ---
 layout: page
-title: Hi, I am Abdel Raoof Olakara
-description: About Me page of Abdel Raoof
+title: About Leo L.
+description: About Me page of superarts.org
 theme: purple
 ---
 
-I am a web focused developer mostly working using Microsoft .Net technologies. Occasionally, I end up working on non web related projects. I am based in Abu Dhabi, United Arab Emirates and work for C4 Advanced Solution as Application Developer.
-This is my personal website and blog where I put down my thoughts, solutions to problems and learning notes.
+## About Me
 
-## Stack Overflow
+I'm an iOS developer since 2008, and worked as a professional Android developer for about 3 years. I started to work as a full time software / firmware developer since 2004. I have experience in leading a firmware development team with 10+ developers as well.
 
-Stackoverflow is a online community I hang around a lot during my free time. You can find me answering questions on Sencha's Ext Js , C# and Java. Here is my flair:
+I started my programming life in 1990 with the BASIC language and decided to dedicate myself to it. I enjoy a lot of creative works including making video, music, and programming has always been my favorite. The best part I enjoy is architecture and user interface, and mobile development is my current favorite. I do hope I can jump into the VR scene when the hardware is ready.
 
-<a href="http://stackexchange.com/users/62487">
-<img src="http://stackexchange.com/users/flair/62487.png?theme=clean" width="208" height="58" alt="profile for Abdel Olakara on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Abdel Olakara on Stack Exchange, a network of free, community-driven Q&amp;A sites">
-</a>
+I'm living in Sydney at the moment, and wish to have a chance to work in the US. Please [contact me](mailto:leo@superarts.org) if offering sponsorship is an option for you.
 
+## About This Site
 
-## About this Site
-
-This is a static site powered by Jekyll. The design was done by me and the theme is freely available on [Github](https://github.com/olakara/JekyllMetro). I have used Bootstrap, jQuery, icons from Metro Studio of Syncfusion and Github for hosting the site.
-
-Technicals apart, this is my personal site where I plan to pen down my thoughts, technical experiences that I would like to share. But, the content and opnion that you see here are personal and not related to companies / clients i work with. And regarding the code you see there.. you may use it as per your discretion.
-
-## About this Theme
-
-Jekyll Metro is the result of wanting a clean and new theme for my personal site. I was initially inspired by the [Hyde theme](https://github.com/poole/hyde). but soon I was googling to see if there are any Metro inspired theme available.
-Since, I couldn't find one, I decided to built one for myself. One of the main goal of building my own theme was to have a modern responsive theme that looks good on mobile, tablet and desktop.
-
-You are free to use or fork this theme. And any contribution to fixes of issues are welcome.
-
-## Contact Me
-
-For short messages and quick replies, you can contact me via [Twitter](http://twitter.com/olakara) For anything longer feel free to use the comments section below and I'll reply you by email.
+I decided to switch to static website recently [for some reasons](http://superarts.github.io/LSwift/lswift/intro/gossip/2015/04/30/about-lswift-blog.html), and [GitHub Pages](http://superarts.github.io) with Jekyll seems to be quite cool. I'll put most of my technical stuff here hopefully.
 
 ### Comments:
 

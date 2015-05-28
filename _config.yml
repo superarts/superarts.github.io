@@ -37,7 +37,7 @@ facebook:       'https://www.facebook.com/leo.superarts'
 gplus:          'https://plus.google.com/106764261037553798296/'
 
 # Google Analytics
-gahandler: 'UA-52149651-1'
+gahandler: 'UA-4585175-5'
 
 #if footer-links-visible is 'true' the svg-icons will be shown top on the copy right.
 #else the svg icons will not exist
@@ -58,7 +58,7 @@ footer-links:
   stackoverflow: 'users/772295/superarts-org'
 
 # Disqus
-disqushandler: 'testingblogo'
+disqushandler: 'superarts'
 
 # Blog Configurations
 paginate: 10 # Posts per page on the blog index
@@ -66,4 +66,4 @@ paginate_path: '/blog/page:num'
 destination: ./_site
 
 # Custom vars
-version:          0.8
+version:          1.0
