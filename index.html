@@ -67,9 +67,9 @@ description: Home Page for superarts.org
 				{% for post in site.posts limit:1 %}
 				<a href="{{post.url}}">
 					<div class="tile purple bord">
-						<h3 class="title">Latest Post</h3>
+						<h5 class="title">Latest Post</h5>
 						<h4 class="title">{{ post.title }}</h4>
-						<p> {{ post.content | strip_html | truncatewords: 8 }}</p>
+						<p> {{ post.content | strip_html | truncatewords: 16 }}</p>
 					</div>
 				</a>
 				{% endfor %}
@@ -91,11 +91,7 @@ description: Home Page for superarts.org
 			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="http://superarts.github.io/LSwift/" title="LSwift Blog">
 					<div class="tile orange bord font-fix">
-						<p class="title">LSwift Blog</p>
-						<ol>
-							<li>RestClient</li>
-							<li>Theme Manager</li>
-						</ol>
+						<h1 class="title">LSwift Blog</h1>
 					</div>
 				</a>
 			</div>
@@ -105,21 +101,22 @@ description: Home Page for superarts.org
 			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="http://www.github.com/superarts">
 					<div class="tile blue bord font-fix">
-						<p class="title">GitHub Projects</p>
+						<h3 class="title">GitHub Projects</h3>
 					</div>
 				</a>
 			</div>
 			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="http://www.github.com/superarts/LSwift">
 					<div class="tile orange bord font-fix">
-						<p class="title">LSwift</p>
+						<h4 class="title">LSwift</h4>
+						<p>Rest client, theme manager...</p>
 					</div>
 				</a>
 			</div>
 			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="http://www.github.com/superarts/LFReversibleTinderView">
 					<div class="tile red bord font-fix">
-						<p class="title">Reversible Tinder View</p>
+						<h3 class="title">Reversible Tinder View</h3>
 					</div>
 				</a>
 			</div>
@@ -129,21 +126,23 @@ description: Home Page for superarts.org
 			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="http://itunes.apple.com/au/artist/super-art-software/id289071545">
 					<div class="tile red bord font-fix">
-						<p class="title">App Store Page</p>
+						<h2 class="title">App Store Page</h2>
 					</div>
 				</a>
 			</div>
 			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="http://FitFoxRewards.com">
 					<div class="tile blue bord font-fix">
-						<p class="title">FitFox</p>
+						<h3 class="title">FitFox</h3>
+						<p>HealthKit based competitions.<p>
 					</div>
 				</a>
 			</div>
 			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="https://itunes.apple.com/us/app/sayea-anonymous-location-sharing/id889636032?mt=8">
 					<div class="tile green bord font-fix">
-						<p class="title">Sayea</p>
+						<h3 class="title">Sayea</h3>
+						<p>Anonymous photo sharing.<p>
 					</div>
 				</a>
 			</div>
@@ -153,7 +152,7 @@ description: Home Page for superarts.org
 			<div class="col-md-2 col-sm-3 col-xs-6">
 				<a href="http://stackoverflow.com/users/772295/superarts-org">
 					<div class="tile orange bord font-fix">
-						<p class="title">StackOverflow Profile</p>
+						<h3 class="title">StackOverflow Profile</h3>
 					</div>
 				</a>
 			</div>
