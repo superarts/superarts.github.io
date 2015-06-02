@@ -11,7 +11,7 @@ I'm an iOS developer since 2008, and worked as a professional Android developer 
 
 I started my programming life in 1990 with the BASIC language and decided to dedicate myself to it. I enjoy a lot of creative works including making video, music, and programming has always been my favorite. The best part I enjoy is architecture and user interface, and mobile development is my current favorite. I do hope I can jump into the VR scene when the hardware is ready.
 
-I'm living in Sydney at the moment, and wish to have a chance to work in the US. Please [contact me](mailto:leo@superarts.org) if offering sponsorship is an option for you.
+I'm living in Sydney at the moment, and wish to work as a tech lead or senior developer in the US. Please [contact me](mailto:leo@superarts.org) if offering me E3 visa sponsorship is an option for your company. Any and all help would be much appreciated.
 
 ## About This Site
 
