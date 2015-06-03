@@ -47,10 +47,16 @@
 
     backgroundImage[0]='bcg1.jpg';
     backgroundImage[1]='bcg2.jpg';
-    backgroundImage[2]='bcg3.jpg';
-    backgroundImage[3]='bcg4.jpg';
+    backgroundImage[2]='bcg4.jpg';
+    //backgroundImage[3]='bcg4.jpg';
+	for (i = 10; i <= 20; i++) {
+		backgroundImage.push('bcg'+i+'.png');
+	}
+	for (i = 20; i <= 28; i++) {
+		backgroundImage.push('bcg'+i+'.jpg');
+	}
 
-    var random=Math.floor(Math.random()*4);
+    var random=Math.floor(Math.random()*backgroundImage.length);
     document.write("<style>body {background: url("+"/assets/images/"+backgroundImage[random]+") no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;color:#fff;background-color:#333;}</style>")
     
     </script>
