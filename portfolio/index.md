@@ -4,6 +4,26 @@ title: Portfolio
 permalink: /portfolio/
 ---
 
+To whom it may concern,
+
+I’m a senior mobile developer who’s focusing on iOS and Android development for more than 7 years, and have been working as a senior developer for 10 years. Previously I worked in China and Singapore since 2004, and I’ve been working in Australian for 4.5 years.
+
+I’m living in Sydney at the moment, and wish to work as a tech lead or senior developer in the US. Please contact me if offering me E3 visa sponsorship is an option for your company. Any and all help would be much appreciated.
+
+Please check my website for my resume online: superarts.org/resume
+
+
+Profile
+---
+
+- iOS Projects involved include: FitFox, Music Charts Player, Flipevent, Citibank Singapore, Citibank Australia, PAssionCard, Pingan Bank, and various independent apps including Melbourne Directory, Super File Viewer, Wiki Quiz HD, Unofficial Google Mate, aGun, etc.
+- Created various commercial Android apps including Android Antivirus & Security, etc.
+- Proficient with UIKit, CoreLocations, MapKit, StoreKit, MediaPlayer, MessageUI, and AddressBook Frameworks. Familiar with OpenGLES, AudioToolbox, AVFoundation, CoreGraphics, QuartzCore, OpenAL Frameworks, Git, and Android SDK.
+- Also have some experience in mobile website development.
+- Good at UI and function design, implementation, and testing. Familiar with App Store and Android Market publishing process, affiliate marketing analyze, iDP / Google account, development environment setup, version control, etc.
+- Agile development experience. Responsible and good at learning. Teamwork spirit.
+
+
 Black Citrus, Sydney, April 2015 - Now
 ===
 - Working on an iOS project as the lead mobile developer.
