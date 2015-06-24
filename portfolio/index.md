@@ -13,6 +13,10 @@ I’m living in Sydney at the moment, and wish to work as a tech lead or senior 
 Please check my website for my resume online: superarts.org/resume
 
 
+I have 7 years experience in iOS development (11 years in total as a software developer) and have extensive knowledge in iOS development, including how Obj-C / Swift works which allows me to build the architecture of the apps with both readability and efficiency. I’m good at mastering new technology and building them into the products, for example WatchKit and HealthKit. Other than this, I have all sort of experience in mobile development, including UIKit, MapKit, push notification etc.
+
+I'm an Australian citizen and wish to work in the US with E3 visa sponsorship. I heard it's much quicker and easier to get than H1B (2-3 days and about $500 fee applied), but still sponsorship from a US employer is needed. Cheers.
+
 Profile
 ---
 

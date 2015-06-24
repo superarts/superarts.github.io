@@ -21,11 +21,13 @@ Long story short:
 {% highlight bash %}
 #Update build number with number of git commits if in release mode
 # if [ ${CONFIGURATION} == "Release" ]; then
+# enable the following line to enable auto commit
+#git commit -a -m "auto-commit: version number increased"
 versionNumber=$(/usr/libexec/plistbuddy -c Print:CFBundleShortVersionString: "${PROJECT_DIR}/${INFOPLIST_FILE}")
 buildNumber=$(git rev-list HEAD | wc -l | tr -d ' ')
 buildHash=$(git rev-parse HEAD | cut -c1-4)
-#/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $versionNumber.$buildNumber ($buildHash)""${PROJECT_DIR}/${INFOPLIST_FILE}"
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $versionNumber.$buildNumber""${PROJECT_DIR}/${INFOPLIST_FILE}"
+#/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $versionNumber.$buildNumber ($buildHash)" "${PROJECT_DIR}/${INFOPLIST_FILE}"
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $versionNumber.$buildNumber" "${PROJECT_DIR}/${INFOPLIST_FILE}"
 # fi;
 {% endhighlight %}
  
