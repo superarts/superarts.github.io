@@ -13,9 +13,33 @@ I’m living in Sydney at the moment, and wish to work as a tech lead or senior 
 Please check my website for my resume online: superarts.org/resume
 
 
-I have 7 years experience in iOS development (11 years in total as a software developer) and have extensive knowledge in iOS development, including how Obj-C / Swift works which allows me to build the architecture of the apps with both readability and efficiency. I’m good at mastering new technology and building them into the products, for example WatchKit and HealthKit. Other than this, I have all sort of experience in mobile development, including UIKit, MapKit, push notification etc.
+FAQ
+---
 
-I'm an Australian citizen and wish to work in the US with E3 visa sponsorship. I heard it's much quicker and easier to get than H1B (2-3 days and about $500 fee applied), but still sponsorship from a US employer is needed. Cheers.
+What is your reason for seeking a new opportunity?
+===
+
+I got my Australian passport recently, which allows me to apply for jobs that offers E3 sponsorship to work in the US. Comparing with H1B, it only takes 2-3 weeks and about $500 to apply, and doesn't have a limited cap. I have been always willing to work in the US and I feel like it's the right time.
+
+What are your strengths with native iOS Development?
+===
+I have 7 years experience in as an iOS developer (11 years in total as a software developer) and have extensive knowledge in iOS development, including how Obj-C / Swift works which allows me to build the architecture of the apps with both readability and efficiency. I’m good at mastering new technology and building them into the products, for example WatchKit and HealthKit. Other than this, I have all sort of experience in mobile development, including UIKit, MapKit, push notification etc.
+
+Please send the links to any published apps in the app store.
+===
+iComplain: icomplain.com.au
+FitFox: FitFoxRewards.com
+Tipi: https://itunes.apple.com/au/app/tipi/id852233153?mt=8
+Others: http://itunes.apple.com/au/artist/super-art-software/id289071545
+
+What is your current salary, and your desired salary for this role?
+===
+My expected salary in the US would be $140k to $160k pa, depends on the local price level.
+
+When are you available to start?
+===
+Currently I'm in an open contract and my notice period would be 2-3 weeks, which feels the gap of applying E3 visa.
+
 
 Profile
 ---
