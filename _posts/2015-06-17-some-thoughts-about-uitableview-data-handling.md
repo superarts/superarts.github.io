@@ -11,27 +11,31 @@ This post is kind of a journal about adding this feature in LRestClient, and I'v
 
 One of the goals when I'm writing code is to always avoid duplicated code. It sounds like a straight-forward principle, but sometimes the "best" approach is not that obvious. For example, considering:
 
-	func job1() {
-		perform1("task1")
-		perform2("task2")
-	}
-	func job2() {
-		perform1("task3")
-		perform2("task4")
-	}
+{% highlight c %}
+func job1() {
+	perform1("task1")
+	perform2("task2")
+}
+func job2() {
+	perform1("task3")
+	perform2("task4")
+}
+{% endhighlight %}
 
 And:
 
-	func perform(task1, task2) {
-		perform1(task1)
-		perform2(task2)
-	}
-	func job1() {
-		perform("task1", "task2")
-	}
-	func job2() {
-		perform("task3", "task4")
-	}
+{% highlight c %}
+func perform(task1, task2) {
+	perform1(task1)
+	perform2(task2)
+}
+func job1() {
+	perform("task1", "task2")
+}
+func job2() {
+	perform("task3", "task4")
+}
+{% endhighlight %}
 
 Is it worth the effort to create the `perform` function even it's going to be called twice? In this case, there will be 2 more lines. I believe there isn't a right answer for this one, and it's just a simple and extreme case. What bothered me recently is that when I'm working on some UI controllers, I feel like some of the features can be considered "generic", but it's still hard to decide which parts should be put in a library and which part should remain in the project of the product. The principle should be simple: if the logic belongs to the business itself, it should be part of the product, but still I find there are some cases that are quite similar across multiple products.
 
