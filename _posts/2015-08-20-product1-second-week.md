@@ -18,16 +18,19 @@ More tracking tools should be added for various reasons, for example, listing al
 ### General
 
 `app opens` are almost twice as `app launch`: user opens the app twice a day on average. **`app-launch-first` needs to be added.**
+
 - app-opens: 357
 - app-launch: 172
 
 There's a small chance that ads banner is not loaded or tinder is not loaded.
+
 - app-launch: 172
 - tinder-load: 169
 - gad-banner-init: 168
 - gad-banner-error: 25
 
 There's a little bit off here, but in general it's no big deal. Probably shouldn't pay attention to this.
+
 - tinder-load: 169
 - tinder-survey-load: 844
 
@@ -40,10 +43,12 @@ There's a little bit off here, but in general it's no big deal. Probably shouldn
 ### New Users
 
 I think 120 are the new users since users are not likely to logout, but probably I should add some tracking to see if that's the case.
+
 - app-launch: 172
 - user-loaded: 120 (email/password page)
 
 `user-signup` needs to be separated. Conversion seems to be OK though.
+
 - user-signin: 109
 - user-signup: 152
 - user-signup-success: 22
@@ -57,6 +62,7 @@ I think 120 are the new users since users are not likely to logout, but probably
 Surprisingly, most users are not going to click through all the tabs to see what the app is able to do. **Home page needs to offer an integrated user experience.**
 
 Only less than 1/3 users are checking settings tab, and they won't bother clicking the items.
+
 - app-launch: 172
 - setting-appear: 50
 - setting-select: 14
@@ -64,6 +70,7 @@ Only less than 1/3 users are checking settings tab, and they won't bother clicki
 - setting-update-nickname: 2
 
 Only less than 1/4 users are checking leaderboard. about 10%+ users use the reload button.
+
 - app-launch: 172
 - leaderboard-loaded: 39
 - leaderboard-reload: 46
@@ -71,12 +78,14 @@ Only less than 1/4 users are checking leaderboard. about 10%+ users use the relo
 ### Answer
 
 Users are not viewing answers? It needs optimization. Also, about 10% users click the reload button manually.
+
 - app-launch: 172
 - answer-loaded: 199
 - answer-reload: 226
 **I messed something up here: `answered-loaded` has been added as `asnwer-loaded` as well.**
 
 Yes, most users are not viewing answers.
+
 - tinder-answer-done: 368
 - tinder-menu-skip: 238
 - tinder-menu-check: 110
