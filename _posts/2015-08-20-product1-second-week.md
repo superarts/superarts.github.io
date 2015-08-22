@@ -15,12 +15,16 @@ Secondly, there are totally 1.7k users and 19.3k votes now, so average votes wen
 
 More tracking tools should be added for various reasons, for example, listing all events in `Parse analyze` is kind of painful. Perhaps I'll had `Flurry` in the incoming version 2.3.
 
+UPDATE: `flurry` event tracking have been added.
+
 ### General
 
 `app opens` are almost twice as `app launch`: user opens the app twice a day on average. **`app-launch-first` needs to be added.**
 
 - app-opens: 357
 - app-launch: 172
+
+UPDATE: parameter `count` have been added to record launch count.
 
 There's a small chance that ads banner is not loaded or tinder is not loaded.
 
@@ -82,7 +86,12 @@ Users are not viewing answers? It needs optimization. Also, about 10% users clic
 - app-launch: 172
 - answer-loaded: 199
 - answer-reload: 226
-**I messed something up here: `answered-loaded` has been added as `asnwer-loaded` as well.**
+**I messed something up here: `answered-loaded` has been added as `answer-loaded` as well.**
+
+UPDATE:
+
+- `vote-loaded`, `vote-reloaded`, `vote-more`, and `vote-switch` have been added to replace `answer-xxx` actions.
+- `answered-xxx` actions have been added as well.
 
 Yes, most users are not viewing answers.
 
