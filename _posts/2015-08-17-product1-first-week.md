@@ -11,6 +11,8 @@ Firstly, the app starts at v2.0 and is very simple: you download it, sign up wit
 
 The app starts with 20+ surveys, and now it's 90+. I added all the surveys manually about 10 a day. A user answers averagely 7.8 surveys at start, and now it reaches 10.4.
 
+I'm not sure why but from day 1 to day 7 the download decreased quite a lot. In parse dashboard, daily active installations went down from 431 to 238, while active users were 194 to 99. However, in `iTunesConnect` the download number was 221 to 114, while App Store views being 405 to 309. This is much worse than another app of mine, I think the reason is that the screenshots are not attractive enough.
+
 Unfortunately, I messed up 2 important things: both admob and parse tracking don't work at all. To address these issues, v2.1 is in review. It also includes some bug fixing. The next release will have some new features which is under development.
 
 {% highlight sh %}
