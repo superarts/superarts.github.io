@@ -7,7 +7,7 @@ tags: Crowdfunding
 
 This is a draft about a survey based community.
 
-The following draft is still under construction.
+The following contents are still under construction.
 
 关于投票社区
 
