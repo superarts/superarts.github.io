@@ -5,7 +5,7 @@ date:   2015-08-07 16:56:00
 categories: LSwift LThemeManager LFLocalizable LFParseLocalizable Parse
 ---
 
-I'm always not happy with the default localization solution `iOS` provides, and while what `Android` offers is much better, it's still not the best it could be. Here are the features `LThemeManager.localization` offers, and I'll be discussing the disadvantages of the current solutions as well:
+I'm always not happy with the default localization solution `iOS` provides, and while what `Android` offers is much better, it's still not the best it could be. Here are the features `LThemeManager.localization` provides, and I'll be discussing the disadvantages of the current solutions as well:
 
 ### To Define
 
