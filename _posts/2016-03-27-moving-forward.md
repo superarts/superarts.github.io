@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Moving Forward"
-date:   2016-03-26 16:58:00
-categories: LSwift LThemeManager LFLocalizable LFParseLocalizable Parse
+date:   2016-03-27 16:58:00
+categories: LSwift cocoapods test
 ---
 
 ## Moving forward - A brief history about LFramework and its future
