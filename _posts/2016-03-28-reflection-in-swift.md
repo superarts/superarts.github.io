@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "Implementation of Reflection in Swift"
-date:   2016-03-27 19:36:00
+date:   2016-03-28 19:36:00
 categories: LSwift 
 ---
 
-### Intro
+## Intro
 
 [Reflection](https://en.wikipedia.org/wiki/Reflection_(computer_programming)) is a set of functions that allows a program to inspect and modify its own structure or even how it works at runtime. I'll start with a real life use case.
 
@@ -74,7 +74,51 @@ Although reflection is relatively slow, the advantage is obvious: you can write 
 
 In this post, I'll be focusing on the implementation of reflection in `Swift`, and hopefully it will help you get a better understanding of the dynamic feature of `Swift`, so that it can be used in your own framework.
 
-### Implementation
+## Implementation
+
+### Creating a native object based on a Dictionary
+
+To create reflection for a native object with a given `Dictionary` (or a `JSON` object that can be deserialized to native `Dictionary`), we can use `for (key, value) in dict` to loop through it, and assign the keys/values to an object using `setValue(value, forKey:key)`. However, assigning a value to a non-existent key will cause an error, thus we need to check if the object `respondsToSelector` first.
+
+But here's something funny happening. Please try to guess what will happen and run the following code in a `Playground`.
+
+{% highlight swift %}
+import Foundation
+
+class TestObject: NSObject {
+	var int0: Int = 0
+	var int1: Int?
+	var int2: Int!
+	var int3: NSNumber?
+	var str: String?
+	
+	func selectorTest() {
+		print("responds to int0: \(respondsToSelector(NSSelectorFromString("int0")))")
+		print("responds to int1: \(respondsToSelector(NSSelectorFromString("int1")))")
+		print("responds to int2: \(respondsToSelector(NSSelectorFromString("int2")))")
+		print("responds to int3: \(respondsToSelector(NSSelectorFromString("int3")))")
+		print("responds to str: \(respondsToSelector(NSSelectorFromString("str")))")
+		
+		setValue(42, forKey:"int3")
+	}
+}
+
+let test = TestObject()
+test.selectorTest()
+print("int3: \(test.int3)")
+{% endhighlight %}
+
+Although in `Swift` `Int` can be bridged to `NSNumber`, `TestObject` does not respond to `int1` and `int2`, and `setValue(42, forKey:("int1"))` will result an error. So it shows that an `NSObject` responds to:
+
+- `Int` with an initial value
+- `NSNumber`, a subclass of `NSObject`
+- `String`, a native `Swift` data type.
+
+Since `TestObject` is an `NSObject`, all the method calls are identical in `Objective-C`. However, to do things the other way around, some `Swift` only mechanism will be introduced.
+
+### Getting all properties from a native object
+
+
 
 (To be continued)
 
