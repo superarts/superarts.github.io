@@ -118,6 +118,34 @@ Since `TestObject` is an `NSObject`, all the method calls are identical in `Obje
 
 ### Getting all properties from a native object
 
+In `Objective-C`, to get all properties from a `NSObject`, we can use [Objective-C runtime APIs](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html) `class_copyPropertyList` to get the property list, and then use `property_getName` to get the name of an item in the list.
+
+{% highlight swift %}
+import Foundation
+
+class ChildObject: NSObject {
+	var int10: Int = 0
+	var int11: Int?
+	var str10: String = "test"
+	var str11: String?
+	
+	func test() {
+        var array = [String]()
+        var count: CUnsignedInt = 0
+		let properties: UnsafeMutablePointer<objc_property_t> = class_copyPropertyList(object_getClass(self), &count)
+
+        for i in 0 ..< Int(count) {
+            if let key = NSString(CString: property_getName(properties[i]), encoding: NSUTF8StringEncoding) as? String {
+				array.append(key)
+			}
+        }
+		print("keys: \(array)")
+	}
+}
+
+let child = ChildObject()
+child.test()
+{% endhighlight %}
 
 
 (To be continued)
