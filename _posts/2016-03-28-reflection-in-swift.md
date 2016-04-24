@@ -2,7 +2,7 @@
 layout: post
 title:  "Implementation of Reflection in Swift"
 date:   2016-03-28 19:36:00
-categories: LSwift 
+categories: LSwift Reflection Objective-C
 ---
 
 ## Intro
@@ -165,7 +165,7 @@ print("keys: \(child.keys())")
 
 You'll see `keys: ["int10", "str10", "str11"]` as the results in `Playground`. Yes, `int11` is still missing, so with this approach you'll always need to give types like `Int` a default value.
 
-Furthermore, if we inherit from `TestObject` but not `NSObject`, i.e. `class ChildObject: TestObject`, we're going to see the same result. In real life it's very common to create things like `StudentObject` based on `UserObject`, and we do need to know `student1.name`, in which name is a property of `UserObject` if I'm allowed to be Captain Obvious here. Anyway, to support things like this, we need to do some little tweaks:
+Furthermore, if we inherit from `TestObject` but not `NSObject`, i.e. `class ChildObject: TestObject`, we're going to see the same result. In real life it's very common to create things like a `StudentObject` based on a `UserObject`, and we do need to know `student1.name`, in which name is a property of `UserObject` if I'm allowed to be Captain Obvious here. Anyway, to support things like this, we need to do some little tweaks:
 
 {% highlight swift %}
 ...
@@ -202,7 +202,7 @@ let child = ChildObject()
 print("keys: \(child.keys())")
 {% endhighlight %}
 
-And now we're getting `keys: ["int10", "str10", "str11", "int0", "int3", "str"]`, and we are used to the absence of `int1`, `int2`, and `int11`. Basically what we did this time was trying to loop through the object and its superclasses to get all the properties of each other, until the superclass is `NSObject`.
+And now we're getting `keys: ["int10", "str10", "str11", "int0", "int3", "str"]` - guess we are used to the absence of `int1`, `int2`, and `int11` already. Basically what we did this time was trying to loop through the object and its superclasses to get all the properties of each other, until the superclass is `NSObject`.
 
 ### Mirror in Swift 2
 
@@ -236,9 +236,9 @@ Yay! Not only the code is much simpler, we also have all the `Int` families back
 
 ### Getting the class of a property from its name
 
-You may notice the commented `init` in `UserModel`. It can be interpret to "after everything is initialized, find the key `father` or `friends`, and reloads it as either a `UserModel` or an array of `UserModel`, based on the type of `father` or `friends`". Without this line `friends` will be set as the original `Array`, which looks like `[["id": 43, "name": "Leo"]]`. So suppose the function `reload` is already there, how to implement the `init` so the `reload`s happen automatically?
+You may notice the commented `init` in `UserModel`. It can be interpret to "after everything is initialized, find the key `father` or `friends`, and reload it as either a `UserModel` or an array of `UserModel`, based on the type of `father` or `friends`". Without this line `friends` will be set as the original `Array`, which looks like `[["id": 43, "name": "Leo"]]`. So suppose the function `reload` is already there, how to implement the `init` so the `reload`s happen automatically?
 
-Firstly let's see what do we need. In `reload`, **`NSClassFromString` is used to get the class of the object from a string**.
+Firstly let's see what we need. In `reload`, **`NSClassFromString` is used to get the class of the object from a string**.
 
 {% highlight swift %}
 let a_class = NSClassFromString(type) as! LFModel.Type
@@ -279,7 +279,7 @@ if value is [String: AnyObject] || value is [AnyObject] {
 }
 {% endhighlight %}
 
-However, the code above is just a proof of concept to show how to get the class of a property from its name. We don't have to do it if we pass the class instead of the class name to `reload`, and not to mention it highly relies on the implementation of how `NSStringFromClass` works in `Swift`, which might be changed in future. I would highly recommend to use the better maintained `EVObject` instead of my `LFModel`, which is used in this tutorial just because it's much simpler to understand.
+However, the code above is just a proof of concept to show how to get the class of a property from its name. We don't have to do it if we pass the class instead of the class name to `reload`, and not to mention it highly relies on the implementation of how `NSStringFromClass` works in `Swift`, which might be changed in future. I would highly recommend to use the better maintained `EVObject` instead of my `LFModel`, which is used in this tutorial just because its implementation is much simpler to understand.
 
 ## Conclusion
 
