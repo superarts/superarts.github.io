@@ -18,10 +18,14 @@ import EVReflection
 class UserModel: LFModel {
 	var name: String?
 	var friends: [UserModel] = []
+	var father: UserModel!
+	/*
 	required init(dict: LTDictStrObj?) {
 		super.init(dict: dict)
+		reload("father", type: NSStringFromClass(UserModel))
 		reload("friends", type: NSStringFromClass(UserModel))
 	}
+	*/
 }
 
 class UserObject: EVObject {
@@ -32,7 +36,12 @@ class UserObject: EVObject {
 
 ...
 
-let model = UserModel(dict: ["id": 42, "name": "Leah Cain", "friends": [["id": 43, "name": "Leo"]]])
+let model = UserModel(dict: [
+	"id": 42, 
+	"name": "Leah Cain", 
+	"friends": [["id": 43, "name": "Leo"]], 
+	"father": ["id": 44, "name": "Deckard Cain"]
+])
 LF.log("model", model)
 
 let json:String = "{\"id\": 24, \"name\": \"Bob Jefferson\", \"friends\": [{\"id\": 29, \"name\": \"Jen Jackson\"}]}"
@@ -43,7 +52,13 @@ print("user: \(user)")
 The output is going to be like this:
 
 {% highlight swift %}
-model: 'LFramework_Example.UserModel (0x7fdc5be28470): [
+model: 'LFramework_Example.UserModel (0x7f96c1427810): [
+    father: '{
+		friends =     (
+		);
+		id = 44;
+		name = "Deckard Cain";
+	}'
     friends: [
         {
 			friends =     (
@@ -110,7 +125,7 @@ print("int3: \(test.int3)")
 
 Although in `Swift` `Int` can be bridged to `NSNumber`, `TestObject` does not respond to `int1` and `int2`, and `setValue(42, forKey:("int1"))` will result an error. So it shows that an `NSObject` responds to:
 
-- `Int` with an initial value
+- `Int` with a default value
 - `NSNumber`, a subclass of `NSObject`
 - `String`, a native `Swift` data type.
 
@@ -118,7 +133,7 @@ Since `TestObject` is an `NSObject`, all the method calls are identical in `Obje
 
 ### Getting all properties from a native object
 
-In `Objective-C`, to get all properties from a `NSObject`, we can use [Objective-C runtime APIs](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html) `class_copyPropertyList` to get the property list, and then use `property_getName` to get the name of an item in the list.
+In `Objective-C`, to get all properties from a `NSObject`, we can use [Objective-C runtime APIs](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html) `class_copyPropertyList` to get the property list, and then use `property_getName` to get the names of all the items.
 
 {% highlight swift %}
 import Foundation
@@ -129,7 +144,7 @@ class ChildObject: NSObject {
 	var str10: String = "test"
 	var str11: String?
 	
-	func test() {
+	func keys() -> [String] {
         var array = [String]()
         var count: CUnsignedInt = 0
 		let properties: UnsafeMutablePointer<objc_property_t> = class_copyPropertyList(object_getClass(self), &count)
@@ -139,16 +154,141 @@ class ChildObject: NSObject {
 				array.append(key)
 			}
         }
-		print("keys: \(array)")
+		return array
 	}
 }
 
 let child = ChildObject()
-child.test()
+print("keys: \(child.keys())")
 {% endhighlight %}
 
+You'll see `keys: ["int10", "str10", "str11"]` as the results in `Playground`. Yes, `int11` is still missing, so with this approach you'll always need to give types like `Int` a default value.
 
-(To be continued)
+Furthermore, if we inherit from `TestObject` but not `NSObject`, i.e. `class ChildObject: TestObject`, we're going to see the same result. In real life it's very common to create things like `StudentObject` based on `UserObject`, and we do need to know `student1.name`, in which name is a property of `UserObject` if I'm allowed to be Captain Obvious here. Anyway, to support things like this, we need to do some little tweaks:
+
+{% highlight swift %}
+...
+
+class ChildObject: TestObject {
+	var int10: Int = 0
+	var int11: Int?
+	var str10: String = "test"
+	var str11: String?
+	
+	func keys() -> [String] {
+        var array = [String]()
+
+		var c: AnyClass! = object_getClass(self)
+		loop: while c != nil {
+			print("class: \(NSStringFromClass(c))")
+			if NSStringFromClass(c) == "NSObject" {
+				break
+			}
+			var count: CUnsignedInt = 0
+			let properties: UnsafeMutablePointer<objc_property_t> = class_copyPropertyList(c, &count)
+			for i in 0 ..< Int(count) {
+                if let key = NSString(CString: property_getName(properties[i]), encoding: NSUTF8StringEncoding) {
+					array.append(key as String)
+                }
+			}
+			c = class_getSuperclass(c)
+		}
+		return array
+	}
+}
+
+let child = ChildObject()
+print("keys: \(child.keys())")
+{% endhighlight %}
+
+And now we're getting `keys: ["int10", "str10", "str11", "int0", "int3", "str"]`, and we are used to the absence of `int1`, `int2`, and `int11`. Basically what we did this time was trying to loop through the object and its superclasses to get all the properties of each other, until the superclass is `NSObject`.
+
+### Mirror in Swift 2
+
+If you're not quite comfortable with the code above since it's too `objc`, it's perfectly fine: actually `Swift` has its own reflection mechanism, and it's significantly changed since `Swift 2`. `Mirror()` replaced `reflect()` and it's very easy to use. Try to add the code below after the definition of `ChildObject` and its instance `child`:
+
+{% highlight swift %}
+var mirror: Mirror? = Mirror(reflecting: child)
+repeat {
+    for property in mirror!.children {
+    	print("property: \(property)")
+    }
+	mirror = mirror?.superclassMirror()
+} while mirror != nil
+{% endhighlight %}
+
+And what do we get this time?
+
+{% highlight swift %}
+property: (Optional("int10"), 0)
+property: (Optional("int11"), nil)
+property: (Optional("str10"), "test")
+property: (Optional("str11"), nil)
+property: (Optional("int0"), 0)
+property: (Optional("int1"), nil)
+property: (Optional("int2"), nil)
+property: (Optional("int3"), nil)
+property: (Optional("str"), nil)
+{% endhighlight %}
+
+Yay! Not only the code is much simpler, we also have all the `Int` families back in. You can read more about `Mirror` in [The Swift Reflection API and what you can do with it](https://appventure.me/2015/10/24/swift-reflection-api-what-you-can-do/#sec-1-4-4), but from the code above we already get what we want: getting all properties from a native object.
+
+### Getting the class of a property from its name
+
+You may notice the line	`reload("friends", type: NSStringFromClass(UserModel))` in `init` of `UserModel`. It can be interpret to "after everything is initilized, find the key `friends` and reloads it as either a `UserModel` or an array of `UserModel`, based on the type of `friends` (in this case it's `[UserModel]`)". Without this line `friends` will be set as the original `Array`, which looks like `[["id": 43, "name": "Leo"]]`. In the same time, `EVReflection` does it automatically. So what's the trick behind this and how to implement it?
+
+Firstly let's see what do we need. In `reload`, `NSClassFromString` is used to get the class of the object from a string.
+
+{% highlight swift %}
+let a_class = NSClassFromString(type) as! LFModel.Type
+let obj = a_class.init(dict: dict_parameter)
+setValue(obj, forKey:key)
+{% endhighlight %}
+
+If you inspect `type`, which in our case is `NSStringFromClass(UserModel)`, it's something like `LFramework_Example.UserModel`, as we can see a `Swift` class is like "bundle name + class name". So we can loop through `child in Mirror(reflecting:sef).type.children` and find the `child` where `child.label` is equal to either `father` or `friends`. And `child.value.dynamicType` is going to be:
+
+- `father`: `Optional<UserModel>`
+- `friends`: `Array<UserModel>`
+
+So if we get rid of the `Optional<>` and `Array<>` part, and append it after bundle name `bundle.infoDictionary[kCFBundleNameKey]`, we can use the string to do the `reload`. If we put the following code inside `init` of `LFModel`, we don't need to call the `reload` manually anymore.
+
+{% highlight swift %}
+if value is [String: AnyObject] || value is [AnyObject] {
+	let type: Mirror = Mirror(reflecting:self)
+	for child in type.children {
+		if let label = child.label where label == key
+		{
+			var type = String(child.value.dynamicType)
+			type = type.stringByReplacingOccurrencesOfString("Optional<", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+			type = type.stringByReplacingOccurrencesOfString("Array<", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+			type = type.stringByReplacingOccurrencesOfString(">", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+
+			let bundle = NSBundle(forClass: self.dynamicType)
+			if let name = bundle.infoDictionary?[kCFBundleNameKey as String] as? String {
+				type = name + "." + type
+			}
+
+			setValue(value, forKey:key)
+			reload(key, type: type)
+			break
+		}
+	}
+} else {
+	setValue(value, forKey:key)
+}
+{% endhighlight %}
+
+However, the code above is just a proof of concept to show how to get the class of a property from its name. We don't have to do it if we pass the class instead of the class name to `reload`, and not to mention it highly relies on the implementation of how `NSStringFromClass` works in `Swift`, which might be changed in future. I would highly recommend to use the better maintained `EVObject` instead of my `LFModel`, which is used in this tutorial just because it's much simplier to understand.
+
+## Conclusion
+
+In this post, we've discussed the tricks of getting properties from a native object in the old `Objective-C` runtime way and the new `Swift 2` `Mirror` way, and getting the class of a property from its name. In the beginning these tricks are used to convert a `Dictionary` into an object.
+
+The downside of reflection is always about performance, and it makes it harder to perform static analytics, so it's more often used in libraries and not the actual business logic, expect you're 100% sure what you're doing, which might not be right if you take a look at the code 1 year later. And particularly in `Swift`, it's a relatively new and fast evovling language, and the new version is not always going to be backward compatible. For example, as we mentioned in `Swift 2` `Mirror()` replaced `reflect()`, and there's no guarantee that `NSStringFromClass` is always going to work in the same way.
+
+Despite of all the disadvantages, using `reflection` carefully results highly dymanic code, simpfies interface, and allows you to think out of the box.
+
+All the code above can be found in [the `refactor/framework` branch of LSwift](https://github.com/superarts/LSwift/tree/refactor/framework).
 
 [lswift]:      http://superarts.github.io/LSwift/
 [superarts]:   http://www.superarts.org/blog
