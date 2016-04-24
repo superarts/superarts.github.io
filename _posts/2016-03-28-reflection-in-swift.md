@@ -236,7 +236,7 @@ Yay! Not only the code is much simpler, we also have all the `Int` families back
 
 ### Getting the class of a property from its name
 
-You may notice the commented `init` in `UserModel`. It can be interpret to "after everything is initilized, find the key `father` or `friends`, and reloads it as either a `UserModel` or an array of `UserModel`, based on the type of `father` or `friends`". Without this line `friends` will be set as the original `Array`, which looks like `[["id": 43, "name": "Leo"]]`. So suppose the function `reload` is already there, how to implement the `init` so the `reload`s happen automatically?
+You may notice the commented `init` in `UserModel`. It can be interpret to "after everything is initialized, find the key `father` or `friends`, and reloads it as either a `UserModel` or an array of `UserModel`, based on the type of `father` or `friends`". Without this line `friends` will be set as the original `Array`, which looks like `[["id": 43, "name": "Leo"]]`. So suppose the function `reload` is already there, how to implement the `init` so the `reload`s happen automatically?
 
 Firstly let's see what do we need. In `reload`, `NSClassFromString` is used to get the class of the object from a string.
 
@@ -246,7 +246,7 @@ let obj = a_class.init(dict: dict_parameter)
 setValue(obj, forKey:key)
 {% endhighlight %}
 
-If you inspect `type`, which in our case is `NSStringFromClass(UserModel)`, it's something like `LFramework_Example.UserModel`, as we can see a `Swift` class is like "bundle name + class name". So we can loop through `child in Mirror(reflecting:sef).type.children` and find the `child` where `child.label` is equal to either `father` or `friends`. And `child.value.dynamicType` is going to be:
+If you inspect `type`, which in our case is `NSStringFromClass(UserModel)`, it's something like `LFramework_Example.UserModel`, as we can see a `Swift` class is like "bundle name + class name". So we can loop through `child in Mirror(reflecting:self).type.children` and find the `child` where `child.label` is equal to either `father` or `friends`. And `child.value.dynamicType` is going to be:
 
 - `father`: `Optional<UserModel>`
 - `friends`: `Array<UserModel>`
@@ -279,15 +279,15 @@ if value is [String: AnyObject] || value is [AnyObject] {
 }
 {% endhighlight %}
 
-However, the code above is just a proof of concept to show how to get the class of a property from its name. We don't have to do it if we pass the class instead of the class name to `reload`, and not to mention it highly relies on the implementation of how `NSStringFromClass` works in `Swift`, which might be changed in future. I would highly recommend to use the better maintained `EVObject` instead of my `LFModel`, which is used in this tutorial just because it's much simplier to understand.
+However, the code above is just a proof of concept to show how to get the class of a property from its name. We don't have to do it if we pass the class instead of the class name to `reload`, and not to mention it highly relies on the implementation of how `NSStringFromClass` works in `Swift`, which might be changed in future. I would highly recommend to use the better maintained `EVObject` instead of my `LFModel`, which is used in this tutorial just because it's much simpler to understand.
 
 ## Conclusion
 
 In this post, we've discussed the tricks of getting properties from a native object in the old `Objective-C` runtime way and the new `Swift 2` `Mirror` way, and getting the class of a property from its name. In the beginning these tricks are used to convert a `Dictionary` into an object.
 
-The downside of reflection is always about performance, and it makes it harder to perform static analytics, so it's more often used in libraries and not the actual business logic, expect you're 100% sure what you're doing, which might not be right if you take a look at the code 1 year later. And particularly in `Swift`, it's a relatively new and fast evovling language, and the new version is not always going to be backward compatible. For example, as we mentioned in `Swift 2` `Mirror()` replaced `reflect()`, and there's no guarantee that `NSStringFromClass` is always going to work in the same way.
+The downside of reflection is always about performance, and it makes it harder to perform static analytics, so it's more often used in libraries and not the actual business logic, expect you're 100% sure what you're doing, which might not be right if you take a look at the code 1 year later. And particularly in `Swift`, it's a relatively new and fast evolving language, and the new version is not always going to be backward compatible. For example, as we mentioned in `Swift 2` `Mirror()` replaced `reflect()`, and there's no guarantee that `NSStringFromClass` is always going to work in the same way.
 
-Despite of all the disadvantages, using `reflection` carefully results highly dymanic code, simpfies interface, and allows you to think out of the box.
+Despite of all the disadvantages, using `reflection` carefully results highly dynamic code, simplifies interface, and allows you to think out of the box.
 
 All the code above can be found in [the `refactor/framework` branch of LSwift](https://github.com/superarts/LSwift/tree/refactor/framework).
 
