@@ -19,6 +19,7 @@ class UserModel: LFModel {
 	var name: String?
 	var friends: [UserModel] = []
 	var father: UserModel!
+	//	the commented code will be explained later
 	/*
 	required init(dict: LTDictStrObj?) {
 		super.init(dict: dict)
@@ -51,7 +52,7 @@ print("user: \(user)")
 
 The output is going to be like this:
 
-{% highlight swift %}
+{% highlight bash %}
 model: 'LFramework_Example.UserModel (0x7f96c1427810): [
     father: '{
 		friends =     (
@@ -235,7 +236,7 @@ Yay! Not only the code is much simpler, we also have all the `Int` families back
 
 ### Getting the class of a property from its name
 
-You may notice the line	`reload("friends", type: NSStringFromClass(UserModel))` in `init` of `UserModel`. It can be interpret to "after everything is initilized, find the key `friends` and reloads it as either a `UserModel` or an array of `UserModel`, based on the type of `friends` (in this case it's `[UserModel]`)". Without this line `friends` will be set as the original `Array`, which looks like `[["id": 43, "name": "Leo"]]`. In the same time, `EVReflection` does it automatically. So what's the trick behind this and how to implement it?
+You may notice the commented `init` in `UserModel`. It can be interpret to "after everything is initilized, find the key `father` or `friends`, and reloads it as either a `UserModel` or an array of `UserModel`, based on the type of `father` or `friends`". Without this line `friends` will be set as the original `Array`, which looks like `[["id": 43, "name": "Leo"]]`. So suppose the function `reload` is already there, how to implement the `init` so the `reload`s happen automatically?
 
 Firstly let's see what do we need. In `reload`, `NSClassFromString` is used to get the class of the object from a string.
 
@@ -250,7 +251,7 @@ If you inspect `type`, which in our case is `NSStringFromClass(UserModel)`, it's
 - `father`: `Optional<UserModel>`
 - `friends`: `Array<UserModel>`
 
-So if we get rid of the `Optional<>` and `Array<>` part, and append it after bundle name `bundle.infoDictionary[kCFBundleNameKey]`, we can use the string to do the `reload`. If we put the following code inside `init` of `LFModel`, we don't need to call the `reload` manually anymore.
+So if we get rid of the `Optional<>` and `Array<>` part, and append it after bundle name `bundle.infoDictionary[kCFBundleNameKey]`, we can use the string to do the `reload`. After the following code is added inside `init` of `LFModel`, we don't need to call the `reload` manually.
 
 {% highlight swift %}
 if value is [String: AnyObject] || value is [AnyObject] {
