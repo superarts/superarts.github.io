@@ -86,7 +86,7 @@ user: UserObject {
 }
 {% endhighlight %}
 
-Although reflection is relatively slow, the advantage is obvious: you can write highly dynamic code that minimizes interface and still achieves functionalities that's desired. For example, in `EVRefection` or `LFModel`, you don't have to tell what properties there would be in the data model while parsing. The library loops through all the keys/values and processes different data types itself.
+Although reflection is relatively slow, the advantage is obvious: you can write highly dynamic code that minimizes interface and still achieves functionalities that's desired. For example, with `EVRefection` or `LFModel`, you don't have to tell what properties there would be in the data model while parsing. The library loops through all the keys/values and processes different data types itself.
 
 In this post, I'll be focusing on the implementation of reflection in `Swift`, and hopefully it will help you get a better understanding of the dynamic feature of `Swift`, so that it can be used in your own framework.
 
@@ -94,7 +94,7 @@ In this post, I'll be focusing on the implementation of reflection in `Swift`, a
 
 ### Creating a native object based on a Dictionary
 
-To create a native object from a given `Dictionary` (or a `JSON` object that can be deserialized to native `Dictionary`), we can use `for (key, value) in dict` to loop through it, and assign the keys/values to an object using `setValue(value, forKey:key)`. However, assigning a value to a non-existent key will cause an error, thus we need to check if the object `respondsToSelector` first.
+To create a native object from a given `Dictionary` (or a `JSON` object that can be deserialized to native `Dictionary`), we can **use `for (key, value) in dict` to loop through it**, and **assign the keys/values to an object using `setValue(value, forKey:key)`**. However, assigning a value to a non-existent key will cause an error, thus we need to **check if the object `respondsToSelector` first**.
 
 But here's something funny happening. Please try to guess what will happen and run the following code in a `Playground`.
 
@@ -134,7 +134,7 @@ Since `TestObject` is an `NSObject`, all the method calls are identical in `Obje
 
 ### Getting all properties from a native object
 
-In `Objective-C`, to get all properties from a `NSObject`, we can use [Objective-C runtime APIs](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html) `class_copyPropertyList` to get the property list, and then use `property_getName` to get the names of all the items.
+In `Objective-C`, to get all properties from a `NSObject`, we can **use [Objective-C runtime APIs](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html) `class_copyPropertyList` to get the property list**, and then **use `property_getName` to get the names of all the items**.
 
 {% highlight swift %}
 import Foundation
@@ -206,7 +206,7 @@ And now we're getting `keys: ["int10", "str10", "str11", "int0", "int3", "str"]`
 
 ### Mirror in Swift 2
 
-If you're not quite comfortable with the code above since it's too `objc`, it's perfectly fine: actually `Swift` has its own reflection mechanism, and it's significantly changed since `Swift 2`. `Mirror()` replaced `reflect()` and it's very easy to use. Try to add the code below after the definition of `ChildObject` and its instance `child`:
+If you're not quite comfortable with the code above since it's too `objc`, it's perfectly fine: actually `Swift` has its own reflection mechanism, and it's significantly changed since `Swift 2`. **[`Mirror()`](https://developer.apple.com/library/watchos/documentation/Swift/Reference/Swift_Mirror_Structure/index.html) replaced `reflect()` and represents the structure of a native object**. Try to add the code below after the definition of `ChildObject` and its instance `child`:
 
 {% highlight swift %}
 var mirror: Mirror? = Mirror(reflecting: child)
@@ -238,7 +238,7 @@ Yay! Not only the code is much simpler, we also have all the `Int` families back
 
 You may notice the commented `init` in `UserModel`. It can be interpret to "after everything is initialized, find the key `father` or `friends`, and reloads it as either a `UserModel` or an array of `UserModel`, based on the type of `father` or `friends`". Without this line `friends` will be set as the original `Array`, which looks like `[["id": 43, "name": "Leo"]]`. So suppose the function `reload` is already there, how to implement the `init` so the `reload`s happen automatically?
 
-Firstly let's see what do we need. In `reload`, `NSClassFromString` is used to get the class of the object from a string.
+Firstly let's see what do we need. In `reload`, **`NSClassFromString` is used to get the class of the object from a string**.
 
 {% highlight swift %}
 let a_class = NSClassFromString(type) as! LFModel.Type
@@ -246,12 +246,12 @@ let obj = a_class.init(dict: dict_parameter)
 setValue(obj, forKey:key)
 {% endhighlight %}
 
-If you inspect `type`, which in our case is `NSStringFromClass(UserModel)`, it's something like `LFramework_Example.UserModel`, as we can see a `Swift` class is like "bundle name + class name". So we can loop through `child in Mirror(reflecting:self).type.children` and find the `child` where `child.label` is equal to either `father` or `friends`. And `child.value.dynamicType` is going to be:
+If you inspect `type`, which in our case is `NSStringFromClass(UserModel)`, it's something like `LFramework_Example.UserModel`, as we can see a `Swift` class is like "bundle name + class name". So we can **loop through `child in Mirror(reflecting:self).type.children` and find the `child` where `child.label` is equal to either `father` or `friends`**. Each `child.value.dynamicType` is going to be:
 
 - `father`: `Optional<UserModel>`
 - `friends`: `Array<UserModel>`
 
-So if we get rid of the `Optional<>` and `Array<>` part, and append it after bundle name `bundle.infoDictionary[kCFBundleNameKey]`, we can use the string to do the `reload`. After the following code is added inside `init` of `LFModel`, we don't need to call the `reload` manually.
+So if we get rid of the `Optional<>` and `Array<>` part, and append it after bundle name `bundle.infoDictionary[kCFBundleNameKey]`, we'll be able to use the class name string to do the `reload`. After the following code is added inside `init` of `LFModel`, we don't need to call the `reload` manually.
 
 {% highlight swift %}
 if value is [String: AnyObject] || value is [AnyObject] {
