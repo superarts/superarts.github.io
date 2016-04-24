@@ -94,7 +94,7 @@ In this post, I'll be focusing on the implementation of reflection in `Swift`, a
 
 ### Creating a native object based on a Dictionary
 
-To create reflection for a native object with a given `Dictionary` (or a `JSON` object that can be deserialized to native `Dictionary`), we can use `for (key, value) in dict` to loop through it, and assign the keys/values to an object using `setValue(value, forKey:key)`. However, assigning a value to a non-existent key will cause an error, thus we need to check if the object `respondsToSelector` first.
+To create a native object from a given `Dictionary` (or a `JSON` object that can be deserialized to native `Dictionary`), we can use `for (key, value) in dict` to loop through it, and assign the keys/values to an object using `setValue(value, forKey:key)`. However, assigning a value to a non-existent key will cause an error, thus we need to check if the object `respondsToSelector` first.
 
 But here's something funny happening. Please try to guess what will happen and run the following code in a `Playground`.
 
@@ -127,8 +127,8 @@ print("int3: \(test.int3)")
 Although in `Swift` `Int` can be bridged to `NSNumber`, `TestObject` does not respond to `int1` and `int2`, and `setValue(42, forKey:("int1"))` will result an error. So it shows that an `NSObject` responds to:
 
 - `Int` with a default value
-- `NSNumber`, a subclass of `NSObject`
-- `String`, a native `Swift` data type.
+- `NSNumber?`, a subclass of `NSObject`
+- `String?`, a native `Swift` data type.
 
 Since `TestObject` is an `NSObject`, all the method calls are identical in `Objective-C`. However, to do things the other way around, some `Swift` only mechanism will be introduced.
 
@@ -283,7 +283,7 @@ However, the code above is just a proof of concept to show how to get the class 
 
 ## Conclusion
 
-In this post, we've discussed the tricks of getting properties from a native object in the old `Objective-C` runtime way and the new `Swift 2` `Mirror` way, and getting the class of a property from its name. In the beginning these tricks are used to convert a `Dictionary` into an object.
+In this post, we've discussed the tricks of assigning keys/values to a native object and the other way around, i.e. getting properties from a native object in both the old `Objective-C` runtime way and the new `Swift 2` `Mirror` way, as well as getting the class of a property from its name. In the beginning these tricks are used to convert a `Dictionary` into an object.
 
 The downside of reflection is always about performance, and it makes it harder to perform static analytics, so it's more often used in libraries and not the actual business logic, expect you're 100% sure what you're doing, which might not be right if you take a look at the code 1 year later. And particularly in `Swift`, it's a relatively new and fast evolving language, and the new version is not always going to be backward compatible. For example, as we mentioned in `Swift 2` `Mirror()` replaced `reflect()`, and there's no guarantee that `NSStringFromClass` is always going to work in the same way.
 
