@@ -16,17 +16,17 @@ import LFramework
 import EVReflection
 
 class UserModel: LFModel {
-	var name: String?
-	var friends: [UserModel] = []
-	var father: UserModel!
-	//	the commented code will be explained later
-	/*
-	required init(dict: LTDictStrObj?) {
-		super.init(dict: dict)
-		reload("father", type: NSStringFromClass(UserModel))
-		reload("friends", type: NSStringFromClass(UserModel))
-	}
-	*/
+    var name: String?
+    var friends: [UserModel] = []
+    var father: UserModel!
+    //    the commented code will be explained later
+    /*
+    required init(dict: LTDictStrObj?) {
+        super.init(dict: dict)
+        reload("father", type: NSStringFromClass(UserModel))
+        reload("friends", type: NSStringFromClass(UserModel))
+    }
+    */
 }
 
 class UserObject: EVObject {
@@ -38,10 +38,10 @@ class UserObject: EVObject {
 ...
 
 let model = UserModel(dict: [
-	"id": 42, 
-	"name": "Leah Cain", 
-	"friends": [["id": 43, "name": "Leo"]], 
-	"father": ["id": 44, "name": "Deckard Cain"]
+    "id": 42, 
+    "name": "Leah Cain", 
+    "friends": [["id": 43, "name": "Leo"]], 
+    "father": ["id": 44, "name": "Deckard Cain"]
 ])
 LF.log("model", model)
 
@@ -55,18 +55,18 @@ The output is going to be like this:
 {% highlight bash %}
 model: 'LFramework_Example.UserModel (0x7f96c1427810): [
     father: '{
-		friends =     (
-		);
-		id = 44;
-		name = "Deckard Cain";
-	}'
+        friends =     (
+        );
+        id = 44;
+        name = "Deckard Cain";
+    }'
     friends: [
         {
-			friends =     (
-			);
-			id = 43;
-			name = Leo;
-		}
+            friends =     (
+            );
+            id = 43;
+            name = Leo;
+        }
     ]
     id: 42
     name: 'Leah Cain'
@@ -77,12 +77,12 @@ user: UserObject {
    key = name, value = Bob Jefferson
    key = friends, value = (
         {
-			friends =         (
-			);
-			id = 29;
-			name = "Jen Jackson";
-		}
-	)
+            friends =         (
+            );
+            id = 29;
+            name = "Jen Jackson";
+        }
+    )
 }
 {% endhighlight %}
 
@@ -102,21 +102,21 @@ But here's something funny happening. Please try to guess what will happen and r
 import Foundation
 
 class TestObject: NSObject {
-	var int0: Int = 0
-	var int1: Int?
-	var int2: Int!
-	var int3: NSNumber?
-	var str: String?
-	
-	func selectorTest() {
-		print("responds to int0: \(respondsToSelector(NSSelectorFromString("int0")))")
-		print("responds to int1: \(respondsToSelector(NSSelectorFromString("int1")))")
-		print("responds to int2: \(respondsToSelector(NSSelectorFromString("int2")))")
-		print("responds to int3: \(respondsToSelector(NSSelectorFromString("int3")))")
-		print("responds to str: \(respondsToSelector(NSSelectorFromString("str")))")
-		
-		setValue(42, forKey:"int3")
-	}
+    var int0: Int = 0
+    var int1: Int?
+    var int2: Int!
+    var int3: NSNumber?
+    var str: String?
+    
+    func selectorTest() {
+        print("responds to int0: \(respondsToSelector(NSSelectorFromString("int0")))")
+        print("responds to int1: \(respondsToSelector(NSSelectorFromString("int1")))")
+        print("responds to int2: \(respondsToSelector(NSSelectorFromString("int2")))")
+        print("responds to int3: \(respondsToSelector(NSSelectorFromString("int3")))")
+        print("responds to str: \(respondsToSelector(NSSelectorFromString("str")))")
+        
+        setValue(42, forKey:"int3")
+    }
 }
 
 let test = TestObject()
@@ -140,23 +140,23 @@ In `Objective-C`, to get all properties from a `NSObject`, we can use [Objective
 import Foundation
 
 class ChildObject: NSObject {
-	var int10: Int = 0
-	var int11: Int?
-	var str10: String = "test"
-	var str11: String?
-	
-	func keys() -> [String] {
+    var int10: Int = 0
+    var int11: Int?
+    var str10: String = "test"
+    var str11: String?
+    
+    func keys() -> [String] {
         var array = [String]()
         var count: CUnsignedInt = 0
-		let properties: UnsafeMutablePointer<objc_property_t> = class_copyPropertyList(object_getClass(self), &count)
+        let properties: UnsafeMutablePointer<objc_property_t> = class_copyPropertyList(object_getClass(self), &count)
 
         for i in 0 ..< Int(count) {
             if let key = NSString(CString: property_getName(properties[i]), encoding: NSUTF8StringEncoding) as? String {
-				array.append(key)
-			}
+                array.append(key)
+            }
         }
-		return array
-	}
+        return array
+    }
 }
 
 let child = ChildObject()
@@ -171,31 +171,31 @@ Furthermore, if we inherit from `TestObject` but not `NSObject`, i.e. `class Chi
 ...
 
 class ChildObject: TestObject {
-	var int10: Int = 0
-	var int11: Int?
-	var str10: String = "test"
-	var str11: String?
-	
-	func keys() -> [String] {
+    var int10: Int = 0
+    var int11: Int?
+    var str10: String = "test"
+    var str11: String?
+    
+    func keys() -> [String] {
         var array = [String]()
 
-		var c: AnyClass! = object_getClass(self)
-		loop: while c != nil {
-			print("class: \(NSStringFromClass(c))")
-			if NSStringFromClass(c) == "NSObject" {
-				break
-			}
-			var count: CUnsignedInt = 0
-			let properties: UnsafeMutablePointer<objc_property_t> = class_copyPropertyList(c, &count)
-			for i in 0 ..< Int(count) {
+        var c: AnyClass! = object_getClass(self)
+        loop: while c != nil {
+            print("class: \(NSStringFromClass(c))")
+            if NSStringFromClass(c) == "NSObject" {
+                break
+            }
+            var count: CUnsignedInt = 0
+            let properties: UnsafeMutablePointer<objc_property_t> = class_copyPropertyList(c, &count)
+            for i in 0 ..< Int(count) {
                 if let key = NSString(CString: property_getName(properties[i]), encoding: NSUTF8StringEncoding) {
-					array.append(key as String)
+                    array.append(key as String)
                 }
-			}
-			c = class_getSuperclass(c)
-		}
-		return array
-	}
+            }
+            c = class_getSuperclass(c)
+        }
+        return array
+    }
 }
 
 let child = ChildObject()
@@ -212,9 +212,9 @@ If you're not quite comfortable with the code above since it's too `objc`, it's 
 var mirror: Mirror? = Mirror(reflecting: child)
 repeat {
     for property in mirror!.children {
-    	print("property: \(property)")
+        print("property: \(property)")
     }
-	mirror = mirror?.superclassMirror()
+    mirror = mirror?.superclassMirror()
 } while mirror != nil
 {% endhighlight %}
 
@@ -255,27 +255,27 @@ So if we get rid of the `Optional<>` and `Array<>` part, and append it after bun
 
 {% highlight swift %}
 if value is [String: AnyObject] || value is [AnyObject] {
-	let type: Mirror = Mirror(reflecting:self)
-	for child in type.children {
-		if let label = child.label where label == key
-		{
-			var type = String(child.value.dynamicType)
-			type = type.stringByReplacingOccurrencesOfString("Optional<", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-			type = type.stringByReplacingOccurrencesOfString("Array<", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-			type = type.stringByReplacingOccurrencesOfString(">", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+    let type: Mirror = Mirror(reflecting:self)
+    for child in type.children {
+        if let label = child.label where label == key
+        {
+            var type = String(child.value.dynamicType)
+            type = type.stringByReplacingOccurrencesOfString("Optional<", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            type = type.stringByReplacingOccurrencesOfString("Array<", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            type = type.stringByReplacingOccurrencesOfString(">", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
 
-			let bundle = NSBundle(forClass: self.dynamicType)
-			if let name = bundle.infoDictionary?[kCFBundleNameKey as String] as? String {
-				type = name + "." + type
-			}
+            let bundle = NSBundle(forClass: self.dynamicType)
+            if let name = bundle.infoDictionary?[kCFBundleNameKey as String] as? String {
+                type = name + "." + type
+            }
 
-			setValue(value, forKey:key)
-			reload(key, type: type)
-			break
-		}
-	}
+            setValue(value, forKey:key)
+            reload(key, type: type)
+            break
+        }
+    }
 } else {
-	setValue(value, forKey:key)
+    setValue(value, forKey:key)
 }
 {% endhighlight %}
 
