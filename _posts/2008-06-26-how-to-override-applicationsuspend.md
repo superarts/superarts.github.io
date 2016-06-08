@@ -7,7 +7,7 @@ tags:
 - Toolchain
 ---
 
-Why I cannot override function `applicationSuspend`?
-Or - why the home button is not functional in my application?
+- Why I cannot override function `applicationSuspend`?
+- Or - why the home button is not functional in my application?
 
 Use xxx.app and call it from `SpringBoard`. Do not use command-line directly.
