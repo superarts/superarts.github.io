@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Setting us a New Mac"
+title:  "Setting up a New Mac"
 date:   2016-05-10 17:50:00
 tags:
 - Mac
