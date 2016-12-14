@@ -1,20 +1,23 @@
 {
-    "location": "Toronto, Canada",    
-    "three_day_forecast": [
-        { 
-            "conditions": "Partly cloudy",
-            "day" : "Monday",
-            "temperature": 20 
-        },
-        { 
-            "conditions": "Showers",
-            "day" : "Tuesday",
-            "temperature": 22 
-        },
-        { 
-            "conditions": "Sunny",
-            "day" : "Wednesday",
-            "temperature": 28 
-        }
-    ]
+	"type": "ABBotItem",
+	"items": [ {
+		"type": ".text", 
+		"title": "Hi there!"
+	}, {
+		"type": ".input", 
+		"title": "Let's start with picking a nickname, OK?",
+		"key": "%NICKNAME%"
+	}, {
+		"type": ".text", 
+		"title": "Thank you %NICKNAME%!"
+	}, {
+		"type": ".scan", 
+		"title": "Now we're going to check your driver's license."
+	}, {
+		"type": ".text", 
+		"title": "Thanks again, %NICKNAME%!"
+	}, {
+		"type": ".text", 
+		"title": "Info obtained:\n\nName: '%FULL_NAME%'\nAddress: '%ADDRESS%'\nCity: '%CITY%'"
+	} ]
 }
