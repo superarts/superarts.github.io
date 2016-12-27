@@ -19,5 +19,20 @@
 	}, {
 		"type": ".text", 
 		"title": "Info obtained:\n\nName: '%FULL_NAME%'\nAddress: '%ADDRESS%'\nCity: '%CITY%'"
+	} ],
+	"summary": {
+		"balance": 120,
+		"credit": "1000"
+	},
+	"transactions": [ {
+		"title": "Direct Debit 798235 Gastro LTD",
+		"merchant": "Gastro LTD",
+		"amount": 120.54,
+		"date": 2457389.3333330001
+	} ],
+		"title": "Direct Credit 7452 XMart",
+		"merchant": "XMart LTD",
+		"amount": 120.54,
+		"date": 2457389.3333330001
 	} ]
 }
