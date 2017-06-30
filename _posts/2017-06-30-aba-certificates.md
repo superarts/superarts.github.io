@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "35 Certificates - American Bankers Association"
+title:  "35 Certificates - American Bankers Association 2017"
 date:   2017-06-30 17:10:00
 categories: Certificate Banking
 tags:
@@ -8,9 +8,9 @@ tags:
 - Banking
 ---
 
-- ADA Accessibility Final Assessment
-- ADA Interacting with People Who Have Disabilities
 - ADA Overview and Employment
+- ADA Interacting with People Who Have Disabilities
+- ADA Accessibility Final Assessment
 - BSA AML: Overview
 - BSA AML: CIP Basics
 - BSA AML: CIP Advanced
@@ -30,10 +30,10 @@ tags:
 - Office of Foreign Assets Control (OFAC)
 - Privacy for Customer Contact Personnel
 - Recognizing and Preventing UDAAP
+- Reg E Overview
 - Reg E Consumer Liability
 - Reg E Disclosure Requirements
 - Reg E Error Resolution Requirements
-- Reg E Overview
 - Reg Z Advertising
 - Reg Z Credit Cards
 - Reserve Requirements for Depository Institutions (Reg D)
