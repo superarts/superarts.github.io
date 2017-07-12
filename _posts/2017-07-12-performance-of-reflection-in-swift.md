@@ -21,6 +21,36 @@ categories: LSwift Reflection Objective-C
   - Looping throw mirror and set `child.value`: 3.3
   - Looping throw mirror and set `42`: 3.27
   - Setting value `42`: 0.05
+  - Setting value `42`: 0.05
 
 [lswift]:      http://superarts.github.io/LSwift/
 [superarts]:   http://www.superarts.org/blog
+
+### Test Class
+
+```
+	class Test: NSObject {
+		var int = 42
+		var str = "test"
+		var data = [String: Int]()
+	}
+```
+
+### Benchmark
+
+```
+	var test = Test()
+	let date = Date()
+	for _ in 0 ... 1000000 {
+		let reflection = Mirror(reflecting: test)
+		for child in reflection.children {
+			if let key = child.label {
+				test.setValue(42, forKey: key)
+			}
+		}
+		test.int = 42
+		test.str = "test"
+		test.data["int"] = 42
+	}
+	SA.log("BENCHMARK", -date.timeIntervalSinceNow)
+```
