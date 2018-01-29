@@ -41,7 +41,7 @@ The Dependency Inversion Principle (DIP) reads:
 1. High level modules should not depend upon low level modules. Both should depend upon abstractions.
 2. Abstractions should not depend upon details. Details should depend upon abstractions.
 
-[High level? Low level? What's the meaning of these?](/assets/images/blog/image001)
+[High level? Low level? What's the meaning of these?](/assets/images/blog/image001.jpg)
 
 Please note that in DIP, "high level modules" doesn't necessarily mean that it's more abstract than "low level modules". It simply states that the implementation of "high level modules" relie on "low level modules", so you can also call them "clients" and "services", as clients need services to perform certain tasks.
 
@@ -49,7 +49,7 @@ In our example, high level `Profile` requires `Address` to store and display an 
 
 ### Figuring out business rules
 
-[What? Business Rules?](/assets/images/blog/image002)
+[What? Business Rules?](/assets/images/blog/image002.jpg)
 
 What we really want here is a `String` based on `Address` for display purpose. Instead of `class`, it is a better idea to use interface to describe business rules, i.e. `protocol` in `Swift`:
 
@@ -83,7 +83,7 @@ As you can see, by applying DIP, our code is much easier to maintain in future: 
 
 You may also have heard of terms like Inversion of Control (IoC), Creation Inversion and so on, and wondered what is the relationship between them and DIP. So let's have a little theory session here.
 
-[Why "inversion"?](/assets/images/blog/image003)
+[Why "inversion"?](/assets/images/blog/image003.jpg)
 
 The word Dependency "Inversion" indicates that in traditional software design, high level modules tend to depend on low level modules; less code in this way, for sure, but more pain when business requirements are changed, since you will have to modify both high level and low level modules, as we can see in the example above.
 
@@ -104,7 +104,7 @@ All those methods mentioned above allow you to invert the control, i.e. implemen
 
 The word Dependency "Injection" means that low level modules are "injected" into high level modules. Consider our `Address` for example: `Profile` does not build `USAddress`, nor tries to locate any. Instead, we will use something like `profile.address = USAddress()` to inject `USAddress` into `Profile` as an `Address`.
 
-[I feel like I'm a DI expert now!](/assets/images/blog/image004)
+[I feel like I'm a DI expert now!](/assets/images/blog/image004.png)
 
 That's good! And there are a bunch of tricks to help achieve DI. Let's take a look at our sample project.
 
@@ -112,7 +112,7 @@ That's good! And there are a bunch of tricks to help achieve DI. Let's take a lo
 
 Firstly please clone project from [GitHub](https://github.com/superarts/InjectionClub), and open `InjectionClub.xcworkspace` with `Xcode`. Take a brief reading at README, run the project, and play around with it to see how it works.
 
-[Screenshot: app screen](/assets/images/blog/image005)
+[Screenshot: app screen](/assets/images/blog/image005.png)
 
 Doesn't do much, huh? Well the reason is that...
 
@@ -120,7 +120,7 @@ Doesn't do much, huh? Well the reason is that...
 
 In an ideal world, software development happens in streamline: product manager gathers requirements from client, UX builds wireframes. Once approved, based on UI design and back-end API, we mobile developers will be building apps undisturbed. Hmm, another peaceful day.
 
-[I can sleep safe and sound](/assets/images/blog/image006)
+[I can sleep safe and sound](/assets/images/blog/image006.png)
 
 ...Until you wake up from daydreaming and face another project with minimium requirements, no design and back-end API at all, and a more-strict-than-ever deadline.
 
@@ -139,7 +139,7 @@ So far the requirements we have include:
 
 It's still debatable whether interfaces or tests should come first. Tests should be built based on business rules, but without interfaces business rules cannot really be defined. I tend to think they are kind of like chicken and egg - you can't really separate "what to do" and "what to test" apart in your thought process in the very beginning. In this tutorial I'll start with protocols, but it is totally fine to start writing tests first, and then conclude interfaces base on the tests.
 
-[Screenshot: protocols](/assets/images/blog/image007)
+[Screenshot: protocols](/assets/images/blog/image007.png)
 
 In the `Protocols` folder, we defined the following protocols, based on the business requirements mentioned above. Firstly we create `protocl Indexable` so that:
 
@@ -201,7 +201,7 @@ For either `Avatar` or `User`, there will be 2 use cases. To create a new object
 
 ### Writing tests
 
-[Screenshot: tests](/assets/images/blog/image008)
+[Screenshot: tests](/assets/images/blog/image008.png)
 
 There are several test classes in the project, and since no DI framework has been introduced yet, let's start with `NewUserAndAvatarWithoutSwinjectTests`, which is about creating new instances of `Avatar` and `User`. Suppose we're starting with a `newUser` and a `newAvatar`, and `newUser` will be the `author` of `newAvatar`:
 
