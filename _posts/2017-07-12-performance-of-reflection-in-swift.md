@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Performance of Reflection in Swift"
+title:  Performance of Reflection in Swift
 date:   2017-07-12 12:33:00
 categories: LSwift Reflection Objective-C
 ---
