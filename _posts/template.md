@@ -6,6 +6,21 @@ categories: template
 tags: template test 
 ---
 
+# Template
+
+This is a template.
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Contents
+
+- [Overview](#overview)
+- [Conclusion](#conclusion)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Overview
+
 A blog is a Web site that enables you or your organization to quickly share ideas and information. Blogs contain posts that are dated and listed in reverse chronological order. People can comment on your posts, as well as provide links to interesting sites, photos, and related blogs.
 
 Posts are an essential part of a blog. They are typically journal-like entries that contain information, ideas, and opinions. They are displayed in chronological order, starting with the most recent posts.
@@ -18,5 +33,7 @@ You can also post content to a blog by doing the following:
 
     Creating and submitting a post in an e-mail message. In order to submit a post in an e-mail message, your blog must be enabled to receive content in e-mail messages.
     Creating a post by using a blog creation and publishing tool that is compatible with a SharePoint blogs.
+
+## Conclusion
 
 By default, blogs are set up so that approval is required before posts are published. This can be helpful if numerous people are publishing content, or if a post could contain sensitive content. By default, people who have permission to manage lists can approve blog posts, but you can customize those settings. 
