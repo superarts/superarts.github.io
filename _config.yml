@@ -10,7 +10,7 @@ permalink:        /blog/:year/:month/:day/:title
 title:            'Super Art Studio'
 tagline:          'Personal website of leo＠superarts.org'
 description:      'www.superarts.org'
-url:              'http://www.superarts.org'
+url:              'https://www.superarts.org'
 baseurl:          ''
 
 # Navigation
