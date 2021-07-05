@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "2 Designs of Swift Concurrency"
+title:  "3 Designs of Swift Concurrency"
 date:   2021-07-05 12:31:00
 tags:
 - Swift Architecture
 ---
 
-# 2 Architecture designs to solve concurrency issues in Swift prior Swift 5.5
+# 3 Architecture designs to solve concurrency issues in Swift prior to Swift 5.5
 
 ## About Swift 5.5 concurrency features
 
