@@ -1,6 +1,6 @@
 # Configurations
 markdown: kramdown
-markdown_ext:  markdown,mkdown,mkdn,mkd,md
+markdown_ext: markdown,mkdown,mkdn,mkd,md
 highlighter: rouge
 
 # Permalinks
