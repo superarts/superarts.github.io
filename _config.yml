@@ -69,3 +69,5 @@ destination: ./_site
 version:          1.0
 
 include: [".well-known"]
+
+# EOF
