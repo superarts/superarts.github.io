@@ -1,11 +1,7 @@
----
-layout: none
-permalink: .well-known/apple-app-site-association
----
 {
    "webcredentials": {
        "apps": [
-		   "YK96MC55BV.superarts.org.VessBrowser"
+           "YK96MC55BV.com.superarts.LillyPlus"
 	   ]
     }
 }
