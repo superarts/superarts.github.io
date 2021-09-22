@@ -68,4 +68,4 @@ destination: ./_site
 # Custom vars
 version:          1.0
 
-# include: [".well-known"]
+include: [".well-known"]
