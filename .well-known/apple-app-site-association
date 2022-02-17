@@ -2,7 +2,10 @@
    "webcredentials": {
        "apps": [
            "YK96MC55BV.com.superarts.LillyPlus",
-           "YK96MC55BV.superarts.org.VessBrowse"
+           "YK96MC55BV.superarts.org.VessBrowse",
+           "YK96MC55BV.test.com.di.AutoPassword-iOS12",
+           "AKGR9TT483.com.superarts.LillyPlus",
+           "AKGR9TT483.test.com.di.AutoPassword-iOS12"
 	   ]
     }
 }
