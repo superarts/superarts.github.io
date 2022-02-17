@@ -1,7 +1,8 @@
 {
    "webcredentials": {
        "apps": [
-           "YK96MC55BV.com.superarts.LillyPlus"
+           "YK96MC55BV.com.superarts.LillyPlus",
+           "YK96MC55BV.test.com.di.AutoPassword-iOS12"
 	   ]
     }
 }
