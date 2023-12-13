@@ -1,6 +1,6 @@
 <html>
     <body>
-        <h1>WKWebView bridging test 2</h1>
+        <h1>WKWebView bridging test 3</h1>
         <p><input type="text" value="Test text here" id="displayText" style="width:100%"></input><br /></p>
         <input onclick="updateText('Test text from button')" type="button" value="Test update text" id="testButton"></input>
         <input onclick="requestAccessToken()" type="button" value="Request access token" id="Button1"></input>
@@ -40,8 +40,9 @@ function requestRefreshToken() {
 }
 
 setupWKWebViewJavascriptBridge(function(bridge) {
-	bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
+	bridge.registerHandler('testUpdateText', function(data, responseCallback) {
 		console.log('iOS called testJavascriptHandler with', data)
+        updateText("From iOS: " + data)
 		responseCallback({ 'Javascript Says':'Right back atcha!' })
 	})
 })
