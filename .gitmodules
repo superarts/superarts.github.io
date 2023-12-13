@@ -1,0 +1,3 @@
+[submodule "file/ably-chat"]
+	path = file/ably-chat
+	url = git@github.com:servernoj/ably-chat.git
