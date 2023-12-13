@@ -26,7 +26,7 @@ function requestAccessToken() {
             console.log('JS got response', response)
             updateText("Access token: " + response)
         })
-    }
+    })
 }
 
 function requestRefreshToken() {
@@ -36,7 +36,7 @@ function requestRefreshToken() {
             console.log('JS got response', response)
             updateText("Refresh token: " + response)
         })
-    }
+    })
 }
 
 setupWKWebViewJavascriptBridge(function(bridge) {
