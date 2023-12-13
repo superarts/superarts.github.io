@@ -1,6 +1,6 @@
 <html>
     <body>
-        <h1>WKWebView bridging test</h1>
+        <h1>WKWebView bridging test 1</h1>
         <p><input type="text" value="Test text here" id="displayText" style="width:100%"></input><br /></p>
         <input onclick="updateText('Test text from button')" type="button" value="Test update text" id="testButton"></input>
         <input onclick="requestAccessToken()" type="button" value="Request access token" id="Button1"></input>
@@ -21,24 +21,25 @@ function updateText(message) {
 
 function requestAccessToken() {
     updateText("Access token requested...")
-	bridge.callHandler('requestAuthToken', {'tokenType': 'accessToken'}, function(response) {
-		console.log('JS got response', response)
-        updateText("Access token: " + response)
-	})
+    setupWKWebViewJavascriptBridge(function(bridge) {
+        bridge.callHandler('requestAuthToken', {'tokenType': 'accessToken'}, function(response) {
+            console.log('JS got response', response)
+            updateText("Access token: " + response)
+        })
+    }
 }
 
 function requestRefreshToken() {
     updateText("Refresh token requested...")
-	bridge.callHandler('requestAuthToken', {'tokenType': 'refreshToken'}, function(response) {
-		console.log('JS got response', response)
-        updateText("Refresh token: " + response)
-	})
+    setupWKWebViewJavascriptBridge(function(bridge) {
+        bridge.callHandler('requestAuthToken', {'tokenType': 'refreshToken'}, function(response) {
+            console.log('JS got response', response)
+            updateText("Refresh token: " + response)
+        })
+    }
 }
 
 setupWKWebViewJavascriptBridge(function(bridge) {
-
-	/* Initialize your app here */
-
 	bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
 		console.log('iOS called testJavascriptHandler with', data)
 		responseCallback({ 'Javascript Says':'Right back atcha!' })
