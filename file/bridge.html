@@ -1,8 +1,10 @@
 <html>
     <body>
         <h1>WKWebView bridging test</h1>
-        <input type="text" value="Test text here" id="displayText" style="width:100%"></input><br />
-        <input onclick="updateText('from button')" type="button" value="Change text" id="testButton"></input>
+        <p><input type="text" value="Test text here" id="displayText" style="width:100%"></input><br /></p>
+        <input onclick="updateText('Test text from button')" type="button" value="Test update text" id="testButton"></input>
+        <input onclick="requestAccessToken()" type="button" value="Request access token" id="Button1"></input>
+        <input onclick="requestRefreshToken()" type="button" value="Request refresh token" id="Button2"></input>
     </body>
     <script>
 
@@ -13,9 +15,24 @@ function setupWKWebViewJavascriptBridge(callback) {
     window.webkit.messageHandlers.iOS_Native_InjectJavascript.postMessage(null)
 }
 
-function updateText(message)
-{
+function updateText(message) {
     document.getElementById("displayText").value=message
+}
+
+function requestAccessToken() {
+    updateText("Access token requested...")
+	bridge.callHandler('requestAuthToken', {'tokenType': 'accessToken'}, function(response) {
+		console.log('JS got response', response)
+        updateText("Access token: " + response)
+	})
+}
+
+function requestRefreshToken() {
+    updateText("Refresh token requested...")
+	bridge.callHandler('requestAuthToken', {'tokenType': 'refreshToken'}, function(response) {
+		console.log('JS got response', response)
+        updateText("Refresh token: " + response)
+	})
 }
 
 setupWKWebViewJavascriptBridge(function(bridge) {
@@ -25,11 +42,6 @@ setupWKWebViewJavascriptBridge(function(bridge) {
 	bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
 		console.log('iOS called testJavascriptHandler with', data)
 		responseCallback({ 'Javascript Says':'Right back atcha!' })
-	})
-
-	bridge.callHandler('requestAuthToken', {'tokenType': 'accessToken'}, function(response) {
-		console.log('JS got response', response)
-        updateText(response)
 	})
 })
 
