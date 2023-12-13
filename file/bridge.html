@@ -1,5 +1,37 @@
 <html>
     <body>
         <h1>WKWebView bridging test</h1>
+        <input type="text" value="Test text here" id="displayText" style="width:100%"></input><br />
+        <input onclick="updateText('from button')" type="button" value="Change text" id="testButton"></input>
     </body>
+    <script>
+
+function setupWKWebViewJavascriptBridge(callback) {
+    if (window.WKWebViewJavascriptBridge) { return callback(WKWebViewJavascriptBridge) }
+    if (window.WKWVJBCallbacks) { return window.WKWVJBCallbacks.push(callback) }
+    window.WKWVJBCallbacks = [callback]
+    window.webkit.messageHandlers.iOS_Native_InjectJavascript.postMessage(null)
+}
+
+function updateText(message)
+{
+    document.getElementById("displayText").value=message
+}
+
+setupWKWebViewJavascriptBridge(function(bridge) {
+
+	/* Initialize your app here */
+
+	bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
+		console.log('iOS called testJavascriptHandler with', data)
+		responseCallback({ 'Javascript Says':'Right back atcha!' })
+	})
+
+	bridge.callHandler('requestAuthToken', {'tokenType': 'accessToken'}, function(response) {
+		console.log('JS got response', response)
+        updateText(response)
+	})
+})
+
+    </script>
 </html>
